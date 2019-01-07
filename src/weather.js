@@ -3,12 +3,12 @@ require('dotenv').config()
 export class Weather {
 
   async londonWeatherForOneDay() {
-    const london = 'https://api.openweathermap.org/data/2.5/weather?q=London,uk'
+    const london = 'api.openweathermap.org/data/2.5/find?q=London&units=metric'
     const response = await fetch(london + '&appid=' + process.env.API_KEY);
     const londonData = await response.json();
-    const londonTempKelvin = londonData.main.temp
+    const londonTemp = londonData.main.temp
 
-    return londonTempKelvin
+    return londonTemp
   }
 
 }
