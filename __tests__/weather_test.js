@@ -11,8 +11,8 @@ describe('weather', () => {
     expect(weather instanceof Weather).toEqual(true);
   });
 
-  it('returns 5', async () => {
+  it('returns 280.32', async () => {
     const londonWeather = await weather.londonWeatherForOneDay();
-    expect(londonWeather).toEqual(5);
+    expect(londonWeather).toEqual("280.32");
   });
 });
