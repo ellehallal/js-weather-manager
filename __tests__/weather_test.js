@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 import { Weather } from '../src/weather';
 
 describe('weather', () => {
@@ -11,8 +13,8 @@ describe('weather', () => {
     expect(weather instanceof Weather).toEqual(true);
   });
 
-  it('returns 280.32', async () => {
+  it('returns London temperature', async () => {
     const londonWeather = await weather.londonWeatherForOneDay();
-    expect(londonWeather).toEqual("280.32");
+    expect(londonWeather).toEqual(10.3);
   });
 });
