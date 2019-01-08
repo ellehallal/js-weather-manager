@@ -3,9 +3,11 @@ import { Weather } from '../src/weather';
 const weather = new Weather()
 
 async function londonWeather() {
-  const todayLondonWeather = document.getElementById('today-london-weather')
+  const todayLondonWeatherTemp = document.getElementById('today-london-weather-temp')
+  const todayLondonWeatherDescription = document.getElementById('today-london-weather-description')
   const data = await weather.londonWeatherForOneDay();
-  todayLondonWeather.innerHTML = data + '&deg;C'
+  todayLondonWeatherTemp.innerHTML = data[0] + '&deg;C';
+  todayLondonWeatherDescription.innerHTML = data[1]
 }
 
 londonWeather()

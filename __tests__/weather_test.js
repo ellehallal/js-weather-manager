@@ -15,6 +15,11 @@ describe('weather', () => {
 
   it('returns London temperature as a number', async () => {
     const londonWeather = await weather.londonWeatherForOneDay();
-    expect(typeof londonWeather).toEqual('number');
+    expect(typeof londonWeather[0]).toEqual('number');
+  });
+
+  it('returns description of London weather as a string', async () => {
+    const londonWeather = await weather.londonWeatherForOneDay();
+    expect(typeof londonWeather[1]).toEqual('string');
   });
 });
