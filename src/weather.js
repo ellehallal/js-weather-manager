@@ -23,7 +23,8 @@ export class Weather {
     return londonData
   }
 
-  getDates() {
+  getDatesAndTimes() {
+    const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00']
     const oneDay = 1000 * 60 * 60 * 24
     const today = new Date();
     const todayPlus1 = new Date(today.getTime() + (oneDay));
@@ -31,7 +32,7 @@ export class Weather {
     const todayPlus3 = new Date(today.getTime() + (oneDay * 3));
     const todayPlus4 = new Date(today.getTime() + (oneDay * 4));
 
-    const nextFiveDays = [today, todayPlus1, todayPlus2, todayPlus3, todayPlus4]
+    const nextFiveDays = [todayPlus1, todayPlus2, todayPlus3, todayPlus4]
     let dateStrings = []
 
     nextFiveDays.forEach(function(date) {
@@ -39,8 +40,18 @@ export class Weather {
       dateStrings.push(dateToString.substring(1, 11))
     });
 
-    return dateStrings
+    let datesAndTimes = []
+    dateStrings.forEach((date) => {
+      times.forEach((time) => {
+        datesAndTimes.push(date + ' ' + time)
+      })
+    })
+
+    return datesAndTimes
+
   }
+
+
 
 
 
