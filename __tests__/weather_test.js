@@ -32,6 +32,18 @@ describe('weather', () => {
     expect(londonWeather5Days.cnt).toEqual(40);
   });
 
+  it('returns requested temperature as a number', async () => {
+    const data = await weather.getForecast();
+    expect(typeof data[0]).toEqual('number');
+  });
+
+  it('returns requested temperature as a string', async () => {
+    const data = await weather.getForecast();
+    expect(typeof data[1]).toEqual('string');
+  });
+
+
+
 
 
 
