@@ -24,8 +24,8 @@ describe('weather', () => {
   });
 
   it('returns an array of 5 dates as strings in an array', () => {
-    console.log(weather.getDates())
-    expect(weather.getDates().length).toEqual(5);
+    console.log(weather.getDatesAndTimes())
+    expect(weather.getDatesAndTimes().length).toEqual(16);
   });
 
   it('gets 5 day data and returns the value of "cnt" ', async () => {
