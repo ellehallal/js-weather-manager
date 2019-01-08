@@ -22,4 +22,8 @@ describe('weather', () => {
     const londonWeather = await weather.londonWeatherForOneDay();
     expect(typeof londonWeather[1]).toEqual('string');
   });
+
+  it('converts unix time, and formats it as a string', () => {
+    expect(weather.convertDate(1546970400)).toEqual('2019-01-08');
+  });
 });
