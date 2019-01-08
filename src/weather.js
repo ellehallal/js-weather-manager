@@ -18,19 +18,18 @@ export class Weather {
 
   convertDate(unix_time){
     const date = new Date(unix_time * 1000);
-    let day = date.getDate()
-    let month = (date.getMonth() + 1)
-    const year = date.getFullYear()
+    let day = date.getDate();
+    let month = (date.getMonth() + 1);
+    const year = date.getFullYear();
 
     if(day < 10){
       day = "0" + date.getDate()
-    }
+    };
     if(month < 10){
       month = "0" + (date.getMonth() + 1)
-    }
+    };
 
     return `${year}-${month}-${day}`
-
   }
 
 }
