@@ -23,8 +23,7 @@ describe('weather', () => {
     expect(typeof londonWeather[1]).toEqual('string');
   });
 
-  it('returns an array of 5 dates as strings in an array', () => {
-    console.log(weather.getDatesAndTimes())
+  it('returns an array of 16 dates and times as strings in an array', () => {
     expect(weather.getDatesAndTimes().length).toEqual(16);
   });
 
