@@ -35,19 +35,8 @@ export class Weather {
     let dateStrings = []
 
     nextFiveDays.forEach(function(date) {
-      let day = date.getDate();
-      let month = (date.getMonth() + 1);
-      let year = date.getFullYear();
-
-      if(day < 10){
-        day = "0" + date.getDate()
-      };
-      if(month < 10){
-        month = "0" + (date.getMonth() + 1)
-      };
-
-      dateStrings.push(`${year}-${month}-${day}`)
-
+      const dateToString = JSON.stringify(date)
+      dateStrings.push(dateToString.substring(1, 11))
     });
 
     return dateStrings
