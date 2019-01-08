@@ -5,6 +5,10 @@ require('dotenv').config()
 
 export class Weather {
 
+  constructor(board) {
+    this.datesAndTimes = []
+  }
+
   async londonWeatherForOneDay() {
     const url = 'https://api.openweathermap.org/data/2.5/find?q=London,UK&units=metric'
     const response = await fetch(url + '&appid=' + process.env.API_KEY);
@@ -40,14 +44,30 @@ export class Weather {
       dateStrings.push(dateToString.substring(1, 11))
     });
 
-    let datesAndTimes = []
+
     dateStrings.forEach((date) => {
       times.forEach((time) => {
-        datesAndTimes.push(date + ' ' + time)
+        this.datesAndTimes.push(date + ' ' + time)
       })
     })
+    return this.datesAndTimes
+  };
 
-    return datesAndTimes
+  async getForecast(){
+    this.getDatesAndTimes()
+    const londonData = await this.londonWeather5Days()
+
+    const datalist = londonData.list
+    let result = []
+
+    datalist.forEach((date) => {
+      if(date.dt_txt === this.datesAndTimes[0]){
+        result.push(date.main.temp)
+        result.push(date.weather[0].description)
+      }
+    })
+
+    return result
 
   }
 
