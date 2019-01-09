@@ -106,14 +106,9 @@ export class Weather {
         }
       })
     })
-    console.log(result)
+
     return result
-
   }
-
-
-
-
 
 
 }
