@@ -32,9 +32,30 @@ describe('weather', () => {
     expect(londonWeather5Days.cnt).toEqual(40);
   });
 
-  it('returns requested date as a string', async () => {
+  it('creates an array containing 16 objects', async () => {
     const data = await weather.getForecast();
     expect(data.length).toEqual(16);
+  });
+
+  it('returns the date for the first object in the array', async () => {
+    const data = await weather.getForecast();
+    expect(data[0].date).toContain('/');
+  });
+
+  it('returns the day for the first object in the array', async () => {
+    const data = await weather.getForecast();
+    expect(data[0].day).toContain('day');
+  });
+
+  it('returns the time for the first object in the array', async () => {
+    const data = await weather.getForecast();
+    console.log(data[0])
+    expect(data[0].time).toContain(':');
+  });
+
+  it('returns the temp for the first object in the array', async () => {
+    const data = await weather.getForecast();
+    expect(data[0].temp).toContain('°C');
   });
 
 
