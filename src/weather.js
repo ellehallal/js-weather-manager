@@ -21,7 +21,7 @@ export class Weather {
     const temp = data.list[0].main.temp;
     const description = data.list[0].weather[0].description;
     const todayWeather = {
-      temp: temp,
+      temp: `${temp}\xB0C`,
       description: description,
     };
     return todayWeather;
