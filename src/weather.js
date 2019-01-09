@@ -54,20 +54,24 @@ export class Weather {
   };
 
   async getForecast(){
-    this.getDatesAndTimes()
+    const timeStamps = this.getDatesAndTimes()
     const londonData = await this.londonWeather5Days()
 
     const datalist = londonData.list
     let result = []
 
     datalist.forEach((date) => {
-      if(date.dt_txt === this.datesAndTimes[0]){
-        result.push(date.dt_txt)
-        result.push(date.main.temp)
-        result.push(date.weather[0].description)
-      }
+      timeStamps.forEach((timestamp) => {
+        if(date.dt_txt === timestamp){
+          result.push({
+            date: date.dt_txt,
+            temp: date.main.temp,
+            description: date.weather[0].description,
+          })
+        }
+      })
     })
-
+    console.log(result)
     return result
 
   }
