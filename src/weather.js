@@ -62,7 +62,7 @@ export class Weather {
 
     datalist.forEach((date) => {
       if(date.dt_txt === this.datesAndTimes[0]){
-        console.log(this.datesAndTimes[0])
+        result.push(date.dt_txt)
         result.push(date.main.temp)
         result.push(date.weather[0].description)
       }
