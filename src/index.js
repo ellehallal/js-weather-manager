@@ -20,8 +20,8 @@ async function londonWeather5Day() {
 }
 
 async function displayForecast() {
-  let forecast = await londonWeather5Day()
-  let test = document.getElementById('test')
+  const forecast = await londonWeather5Day()
+  const displayForecast = document.getElementById('display-forecast')
 
   forecast.forEach((obj) => {
     let info = document.createElement("div")
@@ -44,7 +44,7 @@ async function displayForecast() {
     descriptionp.innerHTML = obj.description
     info.appendChild(descriptionp)
 
-    test.appendChild(info)
+    displayForecast.appendChild(info)
 
   })
 }
