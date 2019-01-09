@@ -11,11 +11,7 @@ async function londonWeather() {
 }
 
 async function londonWeather5Day() {
-  // const london5daytemp = document.getElementById('london-5-day-temp')
-  // const london5daydescription = document.getElementById('london-5-day-description')
   const data = await weather.getForecast();
-  // london5daytemp.innerHTML = data[0].temp
-  // london5daydescription.innerHTML = data[0].description
   return data
 }
 
