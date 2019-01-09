@@ -1,4 +1,3 @@
-const fetch = require('node-fetch')
 require('dotenv').config()
 import { APIRequest } from '../src/api_request';
 
@@ -8,20 +7,6 @@ export class Weather {
     this.datesAndTimes = []
     this.apiRequest = new APIRequest()
   }
-
-  // async weatherOneDay() {
-  //   const url = 'https://api.openweathermap.org/data/2.5/find?q=London,UK&units=metric'
-  //   const response = await fetch(url + '&appid=' + process.env.API_KEY);
-  //   const data = await response.json();
-  //   return data;
-  // }
-  //
-  // async weatherFiveDays() {
-  //   const url = 'https://api.openweathermap.org/data/2.5/forecast?q=London,UK&units=metric&'
-  //   const response = await fetch(url + '&appid=' + process.env.API_KEY);
-  //   const data = await response.json();
-  //   return data;
-  // }
 
   getDatesAndTimes() {
     const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
