@@ -72,5 +72,4 @@ describe('weather', () => {
     expect(data[0].temp).toContain('°C');
   });
 
-
 });

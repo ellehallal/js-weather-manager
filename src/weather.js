@@ -49,11 +49,25 @@ export class Weather {
 
   async getOneDayWeather(){
     const data = await this.weatherOneDay();
-    const temp = data.list[0].main.temp;
+    const temp = Math.round(data.list[0].main.temp);
     const description = data.list[0].weather[0].description;
-    const minTemp = data.list[0].main.temp_min;
-    const maxTemp = data.list[0].main.temp_max;
+    const minTemp = Math.round(data.list[0].main.temp_min);
+    const maxTemp = Math.round(data.list[0].main.temp_max);
     const location = data.list[0].name;
+
+    if(temp === -0){
+      temp = 0
+    }
+
+    if(minTemp === -0){
+      temp = 0
+    }
+
+    if(minTemp === -0){
+      temp = 0
+    }
+
+
     const todayWeather = {
       temp: `${temp}\xB0C`,
       description: description,
