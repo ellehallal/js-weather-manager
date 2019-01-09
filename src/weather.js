@@ -60,13 +60,12 @@ export class Weather {
     }
 
     if(minTemp === -0){
-      temp = 0
+      minTemp = 0
     }
 
-    if(minTemp === -0){
-      temp = 0
+    if(maxTemp === -0){
+      maxTemp = 0
     }
-
 
     const todayWeather = {
       temp: `${temp}\xB0C`,

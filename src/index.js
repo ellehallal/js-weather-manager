@@ -3,11 +3,16 @@ import { Weather } from '../src/weather';
 const weather = new Weather()
 
 async function displayOneDay () {
-  const todayLondonWeatherTemp = document.getElementById('today-london-weather-temp')
-  const todayLondonWeatherDescription = document.getElementById('today-london-weather-description')
+  const todayTemp = document.getElementById('today-temp')
+  const todayDescription = document.getElementById('today-description')
+  const todayMinTemp = document.getElementById('today-min-temp')
+  const todayMaxTemp = document.getElementById('today-max-temp')
   const data = await weather.getOneDayWeather();
-  todayLondonWeatherTemp.innerHTML = data.temp;
-  todayLondonWeatherDescription.innerHTML = data.description;
+
+  todayTemp.innerHTML = data.temp;
+  todayDescription.innerHTML = data.description;
+  todayMinTemp.innerHTML = data.mintemp;
+  todayMaxTemp.innerHTML = data.maxtemp;
 }
 
 
