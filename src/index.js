@@ -2,49 +2,56 @@ import { Weather } from '../src/weather';
 
 const weather = new Weather()
 
-async function londonWeather() {
-  const todayLondonWeatherTemp = document.getElementById('today-london-weather-temp')
-  const todayLondonWeatherDescription = document.getElementById('today-london-weather-description')
-  const data = await weather.londonWeatherForOneDay();
-  todayLondonWeatherTemp.innerHTML = data[0] + '&deg;C';
-  todayLondonWeatherDescription.innerHTML = data[1]
-}
+async function displayOneDay () {
+  const todayTemp = document.getElementById('today-temp')
+  const todayDescription = document.getElementById('today-description')
+  const todayMinTemp = document.getElementById('today-min-temp')
+  const todayMaxTemp = document.getElementById('today-max-temp')
+  const todayIcon = document.getElementById('today-icon')
+  const data = await weather.getOneDayWeather();
 
-async function londonWeather5Day() {
-  const data = await weather.getForecast();
-  return data
+  todayTemp.innerHTML = data.temp;
+  todayDescription.innerHTML = data.description;
+  todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
+  todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
+  todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`
 }
 
 async function displayForecast() {
-  const forecast = await londonWeather5Day()
+  const forecast = await weather.getForecast();
   const displayForecast = document.getElementById('display-forecast')
 
   forecast.forEach((obj) => {
     let info = document.createElement("div")
+    info.classList.add("entry")
 
+    let icon = document.createElement("img")
+    icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`
+    info.appendChild(icon)
 
-    let dayp = document.createElement("p")
-    dayp.innerHTML = obj.day
-    info.appendChild(dayp);
+    let day = document.createElement("p")
+    day.innerHTML = obj.day
+    info.appendChild(day);
 
-    let timep = document.createElement("p")
-    timep.innerHTML = obj.time
-    info.appendChild(timep);
+    let date = document.createElement("p")
+    date.innerHTML = obj.date
+    info.appendChild(date);
 
+    let time = document.createElement("p")
+    time.innerHTML = obj.time
+    info.appendChild(time);
 
-    let tempp = document.createElement("p")
-    tempp.innerHTML = obj.temp
-    info.appendChild(tempp);
+    let temp = document.createElement("p")
+    temp.innerHTML = obj.temp
+    info.appendChild(temp);
 
-    let descriptionp = document.createElement("p")
-    descriptionp.innerHTML = obj.description
-    info.appendChild(descriptionp)
+    let desc = document.createElement("p")
+    desc.innerHTML = obj.description
+    info.appendChild(desc)
 
     displayForecast.appendChild(info)
-
   })
 }
 
-
-londonWeather()
+displayOneDay()
 displayForecast()
