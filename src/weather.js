@@ -63,11 +63,12 @@ export class Weather {
     datalist.forEach((date) => {
       timeStamps.forEach((timestamp) => {
         if(date.dt_txt === timestamp){
-          let dateTime = date.dt_txt.split(' ')
-          let dateFormatted = dateTime[0].split('-')
+          let dateTime = date.dt_txt.split(' ');
+          let dateFormatted = dateTime[0].split('-');
+          let timeFormatted = dateTime[1].split(':')
           result.push({
             date: `${dateFormatted[2]} ${dateFormatted[1]} ${dateFormatted[0]}`,
-            time: dateTime[1],
+            time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: date.main.temp,
             description: date.weather[0].description,
           })
