@@ -15,7 +15,6 @@ async function displayOneDay () {
   todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
   todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
   todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`
-
 }
 
 async function displayForecast() {
@@ -53,7 +52,6 @@ async function displayForecast() {
     displayForecast.appendChild(info)
   })
 }
-
 
 displayOneDay()
 displayForecast()
