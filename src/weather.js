@@ -100,7 +100,7 @@ export class Weather {
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
-            temp: temp,
+            temp: `${temp}°C`,
             description: date.weather[0].description,
           })
         }
