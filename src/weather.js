@@ -20,7 +20,10 @@ export class Weather {
     const data = await this.weatherOneDay();
     const temp = data.list[0].main.temp;
     const description = data.list[0].weather[0].description;
-    const todayWeather = [temp, description];
+    const todayWeather = {
+      temp: temp,
+      description: description,
+    };
     return todayWeather;
   }
 
