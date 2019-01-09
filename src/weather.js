@@ -20,7 +20,7 @@ export class Weather {
     return todayWeather
   }
 
-  async londonWeather5Days() {
+  async weatherFiveDays() {
     const url = 'https://api.openweathermap.org/data/2.5/forecast?q=London,UK&units=metric&'
     const response = await fetch(url + '&appid=' + process.env.API_KEY);
     const londonData = await response.json();
@@ -55,7 +55,7 @@ export class Weather {
 
   async getForecast(){
     const timeStamps = this.getDatesAndTimes()
-    const londonData = await this.londonWeather5Days()
+    const londonData = await this.weatherFiveDays()
 
     const datalist = londonData.list
     let result = []
