@@ -14,13 +14,13 @@ describe('weather', () => {
   });
 
   it('returns London temperature as a number', async () => {
-    const londonWeather = await weather.weatherOneDay();
-    expect(typeof londonWeather[0]).toEqual('number');
+    const londonWeather = await weather.getOneDayWeather();
+    expect(typeof londonWeather.temp).toEqual('number');
   });
 
   it('returns description of London weather as a string', async () => {
-    const londonWeather = await weather.weatherOneDay();
-    expect(typeof londonWeather[1]).toEqual('string');
+    const londonWeather = await weather.getOneDayWeather();
+    expect(typeof londonWeather.description).toEqual('string');
   });
 
   it('returns an array of 16 dates and times as strings in an array', () => {
