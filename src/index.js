@@ -30,25 +30,25 @@ async function displayForecast() {
     icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`
     info.appendChild(icon)
 
-    let dayp = document.createElement("p")
-    dayp.innerHTML = obj.day
-    info.appendChild(dayp);
+    let day = document.createElement("p")
+    day.innerHTML = obj.day
+    info.appendChild(day);
 
-    let datep = document.createElement("p")
-    datep.innerHTML = obj.date
-    info.appendChild(datep);
+    let date = document.createElement("p")
+    date.innerHTML = obj.date
+    info.appendChild(date);
 
-    let timep = document.createElement("p")
-    timep.innerHTML = obj.time
-    info.appendChild(timep);
+    let time = document.createElement("p")
+    time.innerHTML = obj.time
+    info.appendChild(time);
 
-    let tempp = document.createElement("p")
-    tempp.innerHTML = obj.temp
-    info.appendChild(tempp);
+    let temp = document.createElement("p")
+    temp.innerHTML = obj.temp
+    info.appendChild(temp);
 
-    let descriptionp = document.createElement("p")
-    descriptionp.innerHTML = obj.description
-    info.appendChild(descriptionp)
+    let desc = document.createElement("p")
+    desc.innerHTML = obj.description
+    info.appendChild(desc)
 
     displayForecast.appendChild(info)
   })
