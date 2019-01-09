@@ -11,8 +11,8 @@ async function displayOneDay () {
 
   todayTemp.innerHTML = data.temp;
   todayDescription.innerHTML = data.description;
-  todayMinTemp.innerHTML = data.mintemp;
-  todayMaxTemp.innerHTML = data.maxtemp;
+  todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
+  todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
 }
 
 
