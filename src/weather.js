@@ -66,13 +66,38 @@ export class Weather {
           let dateTime = date.dt_txt.split(' ');
           let dateFormatted = dateTime[0].split('-');
           let timeFormatted = dateTime[1].split(':')
+          let day = ""
           let temp = Math.round(date.main.temp)
+
+          switch (new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay()) {
+            case 0:
+            day = "Sunday";
+            break;
+            case 1:
+            day = "Monday";
+            break;
+            case 2:
+            day = "Tuesday";
+            break;
+            case 3:
+            day = "Wednesday";
+            break;
+            case 4:
+            day = "Thursday";
+            break;
+            case 5:
+            day = "Friday";
+            break;
+            case 6:
+            day = "Saturday";
+          }
 
           if(temp === -0){
             temp = 0
           }
 
           result.push({
+            day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: temp,
