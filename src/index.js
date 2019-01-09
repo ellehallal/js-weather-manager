@@ -10,13 +10,9 @@ async function londonWeather() {
   todayLondonWeatherDescription.innerHTML = data[1]
 }
 
-async function londonWeather5Day() {
-  const data = await weather.getForecast();
-  return data
-}
 
 async function displayForecast() {
-  const forecast = await londonWeather5Day()
+  const forecast = await weather.getForecast();
   const displayForecast = document.getElementById('display-forecast')
 
   forecast.forEach((obj) => {
