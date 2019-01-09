@@ -26,6 +26,10 @@ async function displayForecast() {
     let info = document.createElement("div")
     info.classList.add("entry")
 
+    let icon = document.createElement("img")
+    icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`
+    info.appendChild(icon)
+
     let dayp = document.createElement("p")
     dayp.innerHTML = obj.day
     info.appendChild(dayp);
