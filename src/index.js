@@ -22,7 +22,6 @@ async function displayForecast() {
   forecast.forEach((obj) => {
     let info = document.createElement("div")
 
-
     let dayp = document.createElement("p")
     dayp.innerHTML = obj.day
     info.appendChild(dayp);
@@ -30,7 +29,6 @@ async function displayForecast() {
     let timep = document.createElement("p")
     timep.innerHTML = obj.time
     info.appendChild(timep);
-
 
     let tempp = document.createElement("p")
     tempp.innerHTML = obj.temp
@@ -41,7 +39,6 @@ async function displayForecast() {
     info.appendChild(descriptionp)
 
     displayForecast.appendChild(info)
-
   })
 }
 
