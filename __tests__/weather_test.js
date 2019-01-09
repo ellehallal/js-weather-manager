@@ -42,11 +42,6 @@ describe('weather', () => {
     expect(weather.getDatesAndTimes().length).toEqual(16);
   });
 
-  it('gets 5 day data and returns the value of "cnt" ', async () => {
-    const londonWeather5Days = await weather.weatherFiveDays();
-    expect(londonWeather5Days.cnt).toEqual(40);
-  });
-
   it('creates an array containing 16 objects', async () => {
     const data = await weather.getForecast();
     expect(data.length).toEqual(16);
