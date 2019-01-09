@@ -54,6 +54,7 @@ export class Weather {
     const minTemp = Math.round(data.list[0].main.temp_min);
     const maxTemp = Math.round(data.list[0].main.temp_max);
     const location = data.list[0].name;
+    const icon = data.list[0].weather[0].icon
 
     if(temp === -0){
       temp = 0
@@ -73,6 +74,7 @@ export class Weather {
       mintemp: `${minTemp}\xB0C`,
       maxtemp: `${maxTemp}\xB0C`,
       location: location,
+      icon: icon,
     };
     return todayWeather;
   }

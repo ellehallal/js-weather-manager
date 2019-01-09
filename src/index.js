@@ -7,14 +7,16 @@ async function displayOneDay () {
   const todayDescription = document.getElementById('today-description')
   const todayMinTemp = document.getElementById('today-min-temp')
   const todayMaxTemp = document.getElementById('today-max-temp')
+  const todayIcon = document.getElementById('today-icon')
   const data = await weather.getOneDayWeather();
 
   todayTemp.innerHTML = data.temp;
   todayDescription.innerHTML = data.description;
-  todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
   todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
-}
+  todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
+  todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`
 
+}
 
 async function displayForecast() {
   const forecast = await weather.getForecast();
@@ -22,6 +24,7 @@ async function displayForecast() {
 
   forecast.forEach((obj) => {
     let info = document.createElement("div")
+    info.classList.add("entry")
 
     let dayp = document.createElement("p")
     dayp.innerHTML = obj.day
