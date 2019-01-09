@@ -129,6 +129,7 @@ export class Weather {
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
             description: date.weather[0].description,
+            icon: date.weather[0].icon,
           })
         }
       })
