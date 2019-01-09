@@ -37,16 +37,6 @@ describe('weather', () => {
     expect(data.length).toEqual(16);
   });
 
-  // it('returns requested temperature as a number', async () => {
-  //   const data = await weather.getForecast();
-  //   expect(typeof data[1]).toEqual('number');
-  // });
-  //
-  // it('returns requested temperature as a string', async () => {
-  //   const data = await weather.getForecast();
-  //   expect(typeof data[2]).toEqual('string');
-  // });
-
 
 
 
