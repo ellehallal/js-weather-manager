@@ -2,7 +2,7 @@ import { Weather } from '../src/weather';
 
 const weather = new Weather()
 
-async function londonWeather() {
+async function displayOneDay () {
   const todayLondonWeatherTemp = document.getElementById('today-london-weather-temp')
   const todayLondonWeatherDescription = document.getElementById('today-london-weather-description')
   const data = await weather.getOneDayWeather();
@@ -22,6 +22,10 @@ async function displayForecast() {
     dayp.innerHTML = obj.day
     info.appendChild(dayp);
 
+    let datep = document.createElement("p")
+    datep.innerHTML = obj.date
+    info.appendChild(datep);
+
     let timep = document.createElement("p")
     timep.innerHTML = obj.time
     info.appendChild(timep);
@@ -39,5 +43,5 @@ async function displayForecast() {
 }
 
 
-londonWeather()
+displayOneDay()
 displayForecast()
