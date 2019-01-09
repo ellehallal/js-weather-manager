@@ -23,6 +23,21 @@ describe('weather', () => {
     expect(typeof londonWeather.description).toEqual('string');
   });
 
+  it('returns London minimum temperature as a string', async () => {
+    const londonWeather = await weather.getOneDayWeather();
+    expect(londonWeather.mintemp).toContain('°C');
+  });
+
+  it('returns London maximum temperature as a string', async () => {
+    const londonWeather = await weather.getOneDayWeather();
+    expect(londonWeather.maxtemp).toContain('°C');
+  });
+
+  it('returns the location (London) string', async () => {
+    const londonWeather = await weather.getOneDayWeather();
+    expect(londonWeather.location).toContain('London');
+  });
+
   it('returns an array of 16 dates and times as strings in an array', () => {
     expect(weather.getDatesAndTimes().length).toEqual(16);
   });
@@ -49,7 +64,6 @@ describe('weather', () => {
 
   it('returns the time for the first object in the array', async () => {
     const data = await weather.getForecast();
-    console.log(data[0])
     expect(data[0].time).toContain(':');
   });
 
@@ -57,11 +71,6 @@ describe('weather', () => {
     const data = await weather.getForecast();
     expect(data[0].temp).toContain('°C');
   });
-
-
-
-
-
 
 
 });

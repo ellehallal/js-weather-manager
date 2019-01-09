@@ -51,9 +51,15 @@ export class Weather {
     const data = await this.weatherOneDay();
     const temp = data.list[0].main.temp;
     const description = data.list[0].weather[0].description;
+    const minTemp = data.list[0].main.temp_min;
+    const maxTemp = data.list[0].main.temp_max;
+    const location = data.list[0].name;
     const todayWeather = {
       temp: `${temp}\xB0C`,
       description: description,
+      mintemp: `${minTemp}\xB0C`,
+      maxtemp: `${maxTemp}\xB0C`,
+      location: location,
     };
     return todayWeather;
   }
