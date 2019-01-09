@@ -13,9 +13,9 @@ describe('weather', () => {
     expect(weather instanceof Weather).toEqual(true);
   });
 
-  it('returns London temperature as a number', async () => {
+  it('returns London temperature as a string', async () => {
     const londonWeather = await weather.getOneDayWeather();
-    expect(typeof londonWeather.temp).toEqual('number');
+    expect(londonWeather.temp).toContain('°C');
   });
 
   it('returns description of London weather as a string', async () => {

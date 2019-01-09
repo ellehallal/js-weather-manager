@@ -1,8 +1,6 @@
 const fetch = require('node-fetch')
 require('dotenv').config()
 
-
-
 export class Weather {
 
   constructor(board) {
@@ -15,18 +13,6 @@ export class Weather {
     const data = await response.json();
     return data;
   }
-
-  async getOneDayWeather(){
-    const data = await this.weatherOneDay();
-    const temp = data.list[0].main.temp;
-    const description = data.list[0].weather[0].description;
-    const todayWeather = {
-      temp: `${temp}\xB0C`,
-      description: description,
-    };
-    return todayWeather;
-  }
-
 
   async weatherFiveDays() {
     const url = 'https://api.openweathermap.org/data/2.5/forecast?q=London,UK&units=metric&'
@@ -52,7 +38,6 @@ export class Weather {
       dateStrings.push(dateToString.substring(1, 11))
     });
 
-
     dateStrings.forEach((date) => {
       times.forEach((time) => {
         this.datesAndTimes.push(date + ' ' + time)
@@ -60,6 +45,18 @@ export class Weather {
     })
     return this.datesAndTimes
   };
+
+
+  async getOneDayWeather(){
+    const data = await this.weatherOneDay();
+    const temp = data.list[0].main.temp;
+    const description = data.list[0].weather[0].description;
+    const todayWeather = {
+      temp: `${temp}\xB0C`,
+      description: description,
+    };
+    return todayWeather;
+  }
 
 
   async getForecast(){
