@@ -12,32 +12,37 @@ export class Weather {
   async weatherOneDay() {
     const url = 'https://api.openweathermap.org/data/2.5/find?q=London,UK&units=metric'
     const response = await fetch(url + '&appid=' + process.env.API_KEY);
-    const londonData = await response.json();
-    const londonTemp = londonData.list[0].main.temp;
-    const londonTempDescription = londonData.list[0].weather[0].description;
-    const todayWeather = [londonTemp, londonTempDescription];
-
-    return todayWeather
+    const data = await response.json();
+    return data;
   }
+
+  async getOneDayWeather(){
+    const data = await this.weatherOneDay();
+    const temp = data.list[0].main.temp;
+    const description = data.list[0].weather[0].description;
+    const todayWeather = [temp, description];
+    return todayWeather;
+  }
+
 
   async weatherFiveDays() {
     const url = 'https://api.openweathermap.org/data/2.5/forecast?q=London,UK&units=metric&'
     const response = await fetch(url + '&appid=' + process.env.API_KEY);
-    const londonData = await response.json();
-    return londonData
+    const data = await response.json();
+    return data;
   }
 
   getDatesAndTimes() {
-    const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00']
-    const oneDay = 1000 * 60 * 60 * 24
+    const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
+    const oneDay = 1000 * 60 * 60 * 24;
     const today = new Date();
     const todayPlus1 = new Date(today.getTime() + (oneDay));
     const todayPlus2 = new Date(today.getTime() + (oneDay * 2));
     const todayPlus3 = new Date(today.getTime() + (oneDay * 3));
     const todayPlus4 = new Date(today.getTime() + (oneDay * 4));
 
-    const nextFiveDays = [todayPlus1, todayPlus2, todayPlus3, todayPlus4]
-    let dateStrings = []
+    const nextFiveDays = [todayPlus1, todayPlus2, todayPlus3, todayPlus4];
+    let dateStrings = [];
 
     nextFiveDays.forEach(function(date) {
       const dateToString = JSON.stringify(date)
@@ -53,21 +58,22 @@ export class Weather {
     return this.datesAndTimes
   };
 
-  async getForecast(){
-    const timeStamps = this.getDatesAndTimes()
-    const londonData = await this.weatherFiveDays()
 
-    const datalist = londonData.list
-    let result = []
+  async getForecast(){
+    const timeStamps = this.getDatesAndTimes();
+    const data = await this.weatherFiveDays();
+
+    const datalist = data.list;
+    let result = [];
 
     datalist.forEach((date) => {
       timeStamps.forEach((timestamp) => {
         if(date.dt_txt === timestamp){
           let dateTime = date.dt_txt.split(' ');
           let dateFormatted = dateTime[0].split('-');
-          let timeFormatted = dateTime[1].split(':')
-          let day = ""
-          let temp = Math.round(date.main.temp)
+          let timeFormatted = dateTime[1].split(':');
+          let day = "";
+          let temp = Math.round(date.main.temp);
 
           switch (new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay()) {
             case 0:
@@ -107,7 +113,7 @@ export class Weather {
       })
     })
 
-    return result
+    return result;
   }
 
 

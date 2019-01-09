@@ -28,7 +28,7 @@ describe('weather', () => {
   });
 
   it('gets 5 day data and returns the value of "cnt" ', async () => {
-    const londonWeather5Days = await weather.londonWeather5Days();
+    const londonWeather5Days = await weather.weatherFiveDays();
     expect(londonWeather5Days.cnt).toEqual(40);
   });
 
