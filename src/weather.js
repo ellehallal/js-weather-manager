@@ -36,25 +36,19 @@ export class Weather {
   convertDayToDate(day) {
     switch (day) {
       case 0:
-      day = "Sunday";
-      break;
+        return 'Sunday';
       case 1:
-      day = "Monday";
-      break;
+        return 'Monday';
       case 2:
-      day = "Tuesday";
-      break;
+        return 'Tuesday';
       case 3:
-      day = "Wednesday";
-      break;
+        return 'Wednesday';
       case 4:
-      day = "Thursday";
-      break;
+        return 'Thursday';
       case 5:
-      day = "Friday";
-      break;
+        return 'Friday';
       case 6:
-      day = "Saturday";
+        return 'Saturday';
     }
   }
 
@@ -86,9 +80,9 @@ export class Weather {
     const location = data.list[0].name;
     const icon = data.list[0].weather[0].icon
 
-    convertZeroTemperature(temp);
-    convertZeroTemperature(minTemp);
-    convertZeroTemperature(maxTemp);
+    this.convertZeroTemperature(temp);
+    this.convertZeroTemperature(minTemp);
+    this.convertZeroTemperature(maxTemp);
 
 
     const todayWeather = {
@@ -116,12 +110,12 @@ export class Weather {
           let dateTime = date.dt_txt.split(' ');
           let dateFormatted = dateTime[0].split('-');
           let timeFormatted = dateTime[1].split(':');
-          let day = "";
+          let day = '';
           let temp = Math.round(date.main.temp);
 
-          this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
+          day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
-          convertZeroTemperature(temp);
+          this.convertZeroTemperature(temp);
 
           result.push({
             day: day,
