@@ -36,10 +36,10 @@ export class Weather {
 
   async getOneDayWeather(){
     const data = await this.apiRequest.weatherOneDay();
-    const temp = Math.round(data.list[0].main.temp);
+    let temp = Math.round(data.list[0].main.temp);
     const description = data.list[0].weather[0].description;
-    const minTemp = Math.round(data.list[0].main.temp_min);
-    const maxTemp = Math.round(data.list[0].main.temp_max);
+    let minTemp = Math.round(data.list[0].main.temp_min);
+    let maxTemp = Math.round(data.list[0].main.temp_max);
     const location = data.list[0].name;
     const icon = data.list[0].weather[0].icon
 
