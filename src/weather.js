@@ -33,6 +33,16 @@ export class Weather {
     return this.datesAndTimes
   };
 
+  removeDuplicates(array, key) {
+  const unique = array
+       .map(e => e[key])
+    .map((e, i, final) => final.indexOf(e) === i && i)
+    .filter(e => array[e]).map(e => array[e]);
+   return unique;
+}
+
+
+
 
   async getOneDayWeather(){
     const data = await this.apiRequest.weatherOneDay();
@@ -113,6 +123,7 @@ export class Weather {
           result.push({
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
+            data: [],
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
             description: date.weather[0].description,
