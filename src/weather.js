@@ -98,7 +98,7 @@ export class Weather {
     const data = await this.apiRequest.weatherFiveDays();
 
     const datalist = data.list;
-    let result = [];
+    let forecastObject = [];
 
     datalist.forEach((date) => {
       timeStamps.forEach((timestamp) => {
@@ -107,13 +107,10 @@ export class Weather {
           let dateFormatted = dateTime[0].split('-');
           let timeFormatted = dateTime[1].split(':');
           let day = '';
-          let temp = Math.round(date.main.temp);
 
           day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
-          this.convertZeroTemperature(temp);
-
-          result.push({
+          forecastObject.push({
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
             dt: dateTime[0],
@@ -122,8 +119,8 @@ export class Weather {
         }
       });
     });
-    let newResult = this.removeDuplicates(result, 'date');
-    return newResult;
+    forecastObject = this.removeDuplicates(forecastObject, 'date');
+    return forecastObject;
   }
 
   async getForecastData(obj){
@@ -133,12 +130,14 @@ export class Weather {
     datalist.forEach((date) => {
       obj.forEach((obj) => {
         let dateTime = date.dt_txt.split(' ');
-        let dateFormatted = dateTime[0].split('-');
+        // let dateFormatted = dateTime[0].split('-');
         let timeFormatted = dateTime[1].split(':');
-        let day = "";
+        let day = '';
         let temp = Math.round(date.main.temp);
 
         if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
+          this.convertZeroTemperature(temp);
+
           obj.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
@@ -158,61 +157,3 @@ export class Weather {
     let forecastData = await this.getForecastData(object);
     return forecastData;
   }
-
-
-  // async getForecast(){
-  //   const timeStamps = this.getDatesAndTimes();
-  //   const data = await this.apiRequest.weatherFiveDays();
-  //
-  //   const datalist = data.list;
-  //   let result = [];
-  //
-  //   datalist.forEach((date) => {
-  //     timeStamps.forEach((timestamp) => {
-  //       if(date.dt_txt === timestamp){
-  //         let dateTime = date.dt_txt.split(' ');
-  //         let dateFormatted = dateTime[0].split('-');
-  //         let timeFormatted = dateTime[1].split(':');
-  //         let day = '';
-  //         let temp = Math.round(date.main.temp);
-  //
-  //         day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
-  //
-  //         this.convertZeroTemperature(temp);
-  //
-  //         result.push({
-  //           day: day,
-  //           date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
-  //           dt: dateTime[0],
-  //           data: [],
-  //         });
-  //       }
-  //     });
-  //   });
-  //   let newResult = this.removeDuplicates(result, 'date')
-  //
-  //   datalist.forEach((date) => {
-  //     newResult.forEach((obj) => {
-  //       let dateTime = date.dt_txt.split(' ');
-  //       let dateFormatted = dateTime[0].split('-');
-  //       let timeFormatted = dateTime[1].split(':');
-  //       let day = "";
-  //       let temp = Math.round(date.main.temp);
-  //
-  //       if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
-  //         obj.data.push({
-  //           time: `${timeFormatted[0]}:${timeFormatted[1]}`,
-  //           temp: `${temp}\xB0C`,
-  //           description: date.weather[0].description,
-  //           icon: date.weather[0].icon,
-  //         });
-  //       }
-  //     });
-  //   });
-  //   console.log(newResult);
-  //   return newResult;
-  //
-  // }
-
-
-}
