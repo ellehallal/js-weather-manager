@@ -17,10 +17,10 @@ export class Weather {
     const todayPlus3 = new Date(today.getTime() + (oneDay * 3));
     const todayPlus4 = new Date(today.getTime() + (oneDay * 4));
 
-    const nextFiveDays = [todayPlus1, todayPlus2, todayPlus3, todayPlus4];
+    const nextFourDays = [todayPlus1, todayPlus2, todayPlus3, todayPlus4];
     let dateStrings = [];
 
-    nextFiveDays.forEach(function(date) {
+    nextFourDays.forEach(function(date) {
       const dateToString = JSON.stringify(date)
       dateStrings.push(dateToString.substring(1, 11))
     });
