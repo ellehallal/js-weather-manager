@@ -3,21 +3,38 @@
   <head>
     <title>Weather</title>
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   </head>
   <body>
 
-    <div>
-      <div>
-        <h2>Today: </h2>
-        <img id="today-icon" src="">
-        <p id="today-temp"></p>
+    <div id="container">
+      <div id="today-forecast">
+        <h2 id="today-header"></h2>
+        <hr>
+
+        <div id="today-icon-and-temp">
+          <div id="div-today-icon">
+            <img id="today-icon" src="">
+          </div>
+            <p id="today-temp"></p>
+        </div>
+
         <p id="today-description"></p>
-        <p id="today-max-temp"></p>
-        <p id="today-min-temp"></p>
+
+        <div id="today-bottom-data">
+          <div class="today-high-low">
+            <i class="fas fa-arrow-up"></i>
+            <p id="today-max-temp"></p>
+          </div>
+          <div class="today-high-low">
+            <i class="fas fa-arrow-down"></i>
+            <p id="today-min-temp"></p>
+          </div>
+        </div>
       </div>
 
       <div id="display-forecast">
-        <h3>Forecast for the next four days:</h3>
+        <h3 id=forecast-header>4 Day Forecast:</h3>
       </div>
     </div>
 
