@@ -144,7 +144,6 @@ export class Weather {
         }
       });
     });
-    console.log(obj);
     return obj;
   }
 

@@ -25,32 +25,31 @@ async function displayForecast() {
   const displayForecast = document.getElementById('display-forecast')
 
   forecast.forEach((obj) => {
-    let dayForecast = document.createElement("div");
-    let dayForecastHeader = document.createElement("h3");
-    dayForecast.classList.add("day-forecast");
+    let dayForecast = document.createElement('div');
+    let dayForecastHeader = document.createElement('h3');
+    dayForecast.classList.add('day-forecast');
     dayForecastHeader.innerHTML = `${obj.day} - ${obj.date}`
     dayForecast.appendChild(dayForecastHeader);
 
     let objectData = obj.data;
-    console.log(obj.data)
 
     objectData.forEach((obj) => {
-      let dayForecastData = document.createElement("div");
-      dayForecastData.classList.add("day-forecast-data");
+      let dayForecastData = document.createElement('div');
+      dayForecastData.classList.add('day-forecast-data');
 
-      let icon = document.createElement("img");
+      let icon = document.createElement('img');
       icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`;
       dayForecastData.appendChild(icon);
 
-      let time = document.createElement("p");
+      let time = document.createElement('p');
       time.innerHTML = obj.time;
       dayForecastData.appendChild(time);
 
-      let temp = document.createElement("p");
+      let temp = document.createElement('p');
       temp.innerHTML = obj.temp;
       dayForecastData.appendChild(temp);
 
-      let desc = document.createElement("p");
+      let desc = document.createElement('p');
       desc.innerHTML = obj.description;
       dayForecastData.appendChild(desc);
 
