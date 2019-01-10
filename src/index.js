@@ -3,6 +3,7 @@ import { Weather } from '../src/weather';
 const weather = new Weather()
 
 async function displayOneDay () {
+  const todayHeader = document.getElementById('today-header')
   const todayTemp = document.getElementById('today-temp')
   const todayDescription = document.getElementById('today-description')
   const todayMinTemp = document.getElementById('today-min-temp')
@@ -10,6 +11,7 @@ async function displayOneDay () {
   const todayIcon = document.getElementById('today-icon')
   const data = await weather.getOneDayWeather();
 
+  todayHeader.innerHTML = `Today's weather in ${data.location}`
   todayTemp.innerHTML = data.temp;
   todayDescription.innerHTML = data.description;
   todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
