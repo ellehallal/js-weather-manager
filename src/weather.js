@@ -58,13 +58,12 @@ export class Weather {
     }
   }
 
-
   removeDuplicates(array, key) {
-  const unique = array
-    .map(e => e[key])
-    .map((e, i, final) => final.indexOf(e) === i && i)
-    .filter(e => array[e]).map(e => array[e]);
-   return unique;
+    const unique = array
+      .map(e => e[key])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter(e => array[e]).map(e => array[e]);
+    return unique;
 };
 
 
@@ -127,13 +126,12 @@ export class Weather {
     const data = await this.apiRequest.weatherFiveDays();
     const datalist = data.list;
 
-    datalist.forEach((date) => {
+    datalist.forEach((item) => {
       obj.forEach((obj) => {
-        let dateTime = date.dt_txt.split(' ');
-        // let dateFormatted = dateTime[0].split('-');
+        let dateTime = item.dt_txt.split(' ');
         let timeFormatted = dateTime[1].split(':');
         let day = '';
-        let temp = Math.round(date.main.temp);
+        let temp = Math.round(item.main.temp);
 
         if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
           this.convertZeroTemperature(temp);
@@ -141,8 +139,8 @@ export class Weather {
           obj.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
-            description: date.weather[0].description,
-            icon: date.weather[0].icon,
+            description: item.weather[0].description,
+            icon: item.weather[0].icon,
           });
         }
       });
@@ -157,3 +155,4 @@ export class Weather {
     let forecastData = await this.getForecastData(object);
     return forecastData;
   }
+}
