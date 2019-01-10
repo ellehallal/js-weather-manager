@@ -1,9 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
 
-*{
-  border: 1px solid red;
-}
-
 html {
   color: #222;
   font-size: 1.5em;
@@ -25,6 +21,16 @@ h1 {
 p{
   margin-top: 1%;
   margin-bottom: 1%;
+  text-align: center;
+}
+
+hr {
+    width: 96%;
+    color: #FFFF00;
+    height: 1px;
+}
+i {
+  padding-left: 25%;
 }
 
 .entry {
@@ -35,7 +41,6 @@ p{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -45,5 +50,54 @@ p{
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  border: 1px solid black;
+  padding: 3%;
 
+}
+
+#today-header{
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-transform: capitalize;
+}
+
+#today-icon-and-temp{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+#today-icon{
+  margin-top: 30%;
+
+}
+
+#today-temp{
+  font-size: 3rem;
+}
+
+#today-description{
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+#today-bottom-data{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+#today-high-low{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-self: center;
+}
+
+.today-forecast > p {
+  font-size: 2rem;
 }

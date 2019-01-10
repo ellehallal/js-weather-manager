@@ -14,8 +14,8 @@ async function displayOneDay () {
   todayHeader.innerHTML = `Today's weather in ${data.location}`
   todayTemp.innerHTML = data.temp;
   todayDescription.innerHTML = data.description;
-  todayMaxTemp.innerHTML = `High: ${data.maxtemp}`;
-  todayMinTemp.innerHTML = `Low: ${data.mintemp}`;
+  todayMaxTemp.innerHTML = data.maxtemp;
+  todayMinTemp.innerHTML = data.mintemp;
   todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`
 }
 
