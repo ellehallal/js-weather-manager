@@ -56,8 +56,12 @@ i {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  border: 1px solid black;
   padding: 3%;
+  background-color: #FFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 14px -1px rgba(158, 158, 158, 0.57);
 
 }
 
@@ -104,12 +108,24 @@ i {
   align-self: center;
 }
 
+.fa-arrow-up{
+  color: red;
+}
+
+.fa-arrow-down{
+  color: blue;
+}
+
 #display-forecast{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   min-width: 80vw;
+}
+
+#forecast-header{
+  font-size: 1.6rem;
 }
 
 .day-forecast{
