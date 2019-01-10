@@ -68,9 +68,6 @@ export class Weather {
 };
 
 
-
-
-
   async getOneDayWeather(){
     const data = await this.apiRequest.weatherOneDay();
     let temp = Math.round(data.list[0].main.temp);
@@ -96,8 +93,7 @@ export class Weather {
     return todayWeather;
   }
 
-
-  async getForecast(){
+  async createForecastObject() {
     const timeStamps = this.getDatesAndTimes();
     const data = await this.apiRequest.weatherFiveDays();
 
@@ -126,10 +122,16 @@ export class Weather {
         }
       });
     });
-    let newResult = this.removeDuplicates(result, 'date')
+    let newResult = this.removeDuplicates(result, 'date');
+    return newResult;
+  }
+
+  async getForecastData(obj){
+    const data = await this.apiRequest.weatherFiveDays();
+    const datalist = data.list;
 
     datalist.forEach((date) => {
-      newResult.forEach((obj) => {
+      obj.forEach((obj) => {
         let dateTime = date.dt_txt.split(' ');
         let dateFormatted = dateTime[0].split('-');
         let timeFormatted = dateTime[1].split(':');
@@ -146,10 +148,71 @@ export class Weather {
         }
       });
     });
-    console.log(newResult);
-    return newResult;
-
+    console.log(obj);
+    return obj;
   }
+
+
+  async fourDayForecast(){
+    let object = await this.createForecastObject();
+    let forecastData = await this.getForecastData(object);
+    return forecastData;
+  }
+
+
+  // async getForecast(){
+  //   const timeStamps = this.getDatesAndTimes();
+  //   const data = await this.apiRequest.weatherFiveDays();
+  //
+  //   const datalist = data.list;
+  //   let result = [];
+  //
+  //   datalist.forEach((date) => {
+  //     timeStamps.forEach((timestamp) => {
+  //       if(date.dt_txt === timestamp){
+  //         let dateTime = date.dt_txt.split(' ');
+  //         let dateFormatted = dateTime[0].split('-');
+  //         let timeFormatted = dateTime[1].split(':');
+  //         let day = '';
+  //         let temp = Math.round(date.main.temp);
+  //
+  //         day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
+  //
+  //         this.convertZeroTemperature(temp);
+  //
+  //         result.push({
+  //           day: day,
+  //           date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
+  //           dt: dateTime[0],
+  //           data: [],
+  //         });
+  //       }
+  //     });
+  //   });
+  //   let newResult = this.removeDuplicates(result, 'date')
+  //
+  //   datalist.forEach((date) => {
+  //     newResult.forEach((obj) => {
+  //       let dateTime = date.dt_txt.split(' ');
+  //       let dateFormatted = dateTime[0].split('-');
+  //       let timeFormatted = dateTime[1].split(':');
+  //       let day = "";
+  //       let temp = Math.round(date.main.temp);
+  //
+  //       if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
+  //         obj.data.push({
+  //           time: `${timeFormatted[0]}:${timeFormatted[1]}`,
+  //           temp: `${temp}\xB0C`,
+  //           description: date.weather[0].description,
+  //           icon: date.weather[0].icon,
+  //         });
+  //       }
+  //     });
+  //   });
+  //   console.log(newResult);
+  //   return newResult;
+  //
+  // }
 
 
 }
