@@ -149,8 +149,8 @@ export class Weather {
 
 
   async fourDayForecast(){
-    let object = await this.createForecastObject();
-    let forecastData = await this.getForecastData(object);
+    let forecastObject = await this.createForecastObject();
+    let forecastData = await this.getForecastData(forecastObject);
     return forecastData;
   }
 }
