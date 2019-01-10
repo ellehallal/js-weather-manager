@@ -5,8 +5,8 @@ export class Weather {
 
   constructor(board) {
     this.datesAndTimes = [];
-    this.apiRequest = new APIRequest();
     this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
+    this.apiRequest = new APIRequest();
   }
 
   getDatesAndTimes() {
@@ -33,13 +33,40 @@ export class Weather {
     return this.datesAndTimes
   };
 
+  convertDayToDate(day) {
+    switch (day) {
+      case 0:
+      day = "Sunday";
+      break;
+      case 1:
+      day = "Monday";
+      break;
+      case 2:
+      day = "Tuesday";
+      break;
+      case 3:
+      day = "Wednesday";
+      break;
+      case 4:
+      day = "Thursday";
+      break;
+      case 5:
+      day = "Friday";
+      break;
+      case 6:
+      day = "Saturday";
+    }
+  }
+
+
   removeDuplicates(array, key) {
   const unique = array
     .map(e => e[key])
     .map((e, i, final) => final.indexOf(e) === i && i)
     .filter(e => array[e]).map(e => array[e]);
    return unique;
-}
+};
+
 
 
 
@@ -93,28 +120,7 @@ export class Weather {
           let day = "";
           let temp = Math.round(date.main.temp);
 
-          switch (new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay()) {
-            case 0:
-            day = "Sunday";
-            break;
-            case 1:
-            day = "Monday";
-            break;
-            case 2:
-            day = "Tuesday";
-            break;
-            case 3:
-            day = "Wednesday";
-            break;
-            case 4:
-            day = "Thursday";
-            break;
-            case 5:
-            day = "Friday";
-            break;
-            case 6:
-            day = "Saturday";
-          }
+          this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
           if(temp === -0){
             temp = 0
@@ -125,10 +131,10 @@ export class Weather {
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
             dt: dateTime[0],
             data: [],
-          })
+          });
         }
-      })
-    })
+      });
+    });
     let newResult = this.removeDuplicates(result, 'date')
 
     datalist.forEach((date) => {
@@ -145,11 +151,11 @@ export class Weather {
             temp: `${temp}\xB0C`,
             description: date.weather[0].description,
             icon: date.weather[0].icon,
-          })
+          });
         }
-      })
-    })
-    console.log(newResult)
+      });
+    });
+    console.log(newResult);
     return newResult;
 
   }
