@@ -4,8 +4,9 @@ import { APIRequest } from '../src/api_request';
 export class Weather {
 
   constructor(board) {
-    this.datesAndTimes = []
-    this.apiRequest = new APIRequest()
+    this.datesAndTimes = [];
+    this.apiRequest = new APIRequest();
+    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
   }
 
   getDatesAndTimes() {
@@ -35,7 +36,7 @@ export class Weather {
 
   removeDuplicates(array, key) {
   const unique = array
-       .map(e => e[key])
+    .map(e => e[key])
     .map((e, i, final) => final.indexOf(e) === i && i)
     .filter(e => array[e]).map(e => array[e]);
    return unique;
@@ -120,20 +121,47 @@ export class Weather {
             temp = 0
           }
 
+
+
           result.push({
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
+            dt: dateTime[0],
             data: [],
-            time: `${timeFormatted[0]}:${timeFormatted[1]}`,
-            temp: `${temp}\xB0C`,
-            description: date.weather[0].description,
-            icon: date.weather[0].icon,
           })
         }
       })
     })
+    let newResult = this.removeDuplicates(result, 'date')
 
-    return result;
+    datalist.forEach((date) => {
+      newResult.forEach((obj) => {
+        let dateTime = date.dt_txt.split(' ');
+        let dateFormatted = dateTime[0].split('-');
+        let timeFormatted = dateTime[1].split(':');
+        let day = "";
+        let temp = Math.round(date.main.temp);
+
+        if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
+          obj.data.push(
+            {
+            time: `${timeFormatted[0]}:${timeFormatted[1]}`,
+            temp: `${temp}\xB0C`,
+            description: date.weather[0].description,
+            icon: date.weather[0].icon,
+            }
+          )
+
+        }
+
+      })
+    })
+
+
+
+    console.log(newResult)
+    return newResult;
+
   }
 
 
