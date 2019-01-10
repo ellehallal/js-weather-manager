@@ -35,9 +35,8 @@ p{
 }
 
 hr {
-    width: 96%;
-    color: #FFFF00;
-    height: 1px;
+  width: 96%;
+  border: 1px solid #C0C0C0;
 }
 i {
   padding-left: 25%;
