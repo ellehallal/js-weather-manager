@@ -42,9 +42,9 @@ describe('weather', () => {
     expect(weather.getDatesAndTimes().length).toEqual(16);
   });
 
-  it('creates an array containing 16 objects', async () => {
+  it('creates an array containing 4 objects', async () => {
     const data = await weather.getForecast();
-    expect(data.length).toEqual(16);
+    expect(data.length).toEqual(4);
   });
 
   it('returns the date for the first object in the array', async () => {
@@ -59,12 +59,12 @@ describe('weather', () => {
 
   it('returns the time for the first object in the array', async () => {
     const data = await weather.getForecast();
-    expect(data[0].time).toContain(':');
+    expect(data[0].data[0].time).toContain(':');
   });
 
   it('returns the temp for the first object in the array', async () => {
     const data = await weather.getForecast();
-    expect(data[0].temp).toContain('°C');
+    expect(data[0].data[0].temp).toContain('°C');
   });
 
 });

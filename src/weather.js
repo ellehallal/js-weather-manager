@@ -121,8 +121,6 @@ export class Weather {
             temp = 0
           }
 
-
-
           result.push({
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
@@ -143,22 +141,15 @@ export class Weather {
         let temp = Math.round(date.main.temp);
 
         if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
-          obj.data.push(
-            {
+          obj.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
             description: date.weather[0].description,
             icon: date.weather[0].icon,
-            }
-          )
-
+          })
         }
-
       })
     })
-
-
-
     console.log(newResult)
     return newResult;
 
