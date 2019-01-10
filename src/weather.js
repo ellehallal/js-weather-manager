@@ -58,6 +58,12 @@ export class Weather {
     }
   }
 
+  convertZeroTemperature(temperature) {
+    if(temperature === -0){
+      temperature = 0
+    }
+  }
+
 
   removeDuplicates(array, key) {
   const unique = array
@@ -80,17 +86,10 @@ export class Weather {
     const location = data.list[0].name;
     const icon = data.list[0].weather[0].icon
 
-    if(temp === -0){
-      temp = 0
-    }
+    convertZeroTemperature(temp);
+    convertZeroTemperature(minTemp);
+    convertZeroTemperature(maxTemp);
 
-    if(minTemp === -0){
-      minTemp = 0
-    }
-
-    if(maxTemp === -0){
-      maxTemp = 0
-    }
 
     const todayWeather = {
       temp: `${temp}\xB0C`,
@@ -122,9 +121,7 @@ export class Weather {
 
           this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
-          if(temp === -0){
-            temp = 0
-          }
+          convertZeroTemperature(temp);
 
           result.push({
             day: day,
