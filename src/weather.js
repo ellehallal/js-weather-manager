@@ -130,7 +130,6 @@ export class Weather {
       obj.forEach((obj) => {
         let dateTime = item.dt_txt.split(' ');
         let timeFormatted = dateTime[1].split(':');
-        let day = '';
         let temp = Math.round(item.main.temp);
 
         if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
