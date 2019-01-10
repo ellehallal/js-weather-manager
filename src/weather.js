@@ -10,7 +10,6 @@ export class Weather {
   }
 
   getDatesAndTimes() {
-    const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
     const oneDay = 1000 * 60 * 60 * 24;
     const today = new Date();
     const todayPlus1 = new Date(today.getTime() + (oneDay));
@@ -27,7 +26,7 @@ export class Weather {
     });
 
     dateStrings.forEach((date) => {
-      times.forEach((time) => {
+      this.timeStamps.forEach((time) => {
         this.datesAndTimes.push(date + ' ' + time)
       })
     })
