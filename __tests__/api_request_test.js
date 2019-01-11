@@ -14,13 +14,13 @@ describe('APIRequest', () => {
   });
 
   it('gets 1 day data and returns the value "name" ', async () => {
-    const londonWeather1Day = await apiRequest.weatherOneDay();
-    expect(londonWeather1Day.list[0].name).toEqual('London');
+    const weatherOneDay = await apiRequest.weatherOneDay();
+    expect(weatherOneDay.list[0].name).toEqual('London');
   });
 
   it('gets 5 day data and returns the value of "cnt" ', async () => {
-    const londonWeather5Days = await apiRequest.weatherFourDays();
-    expect(londonWeather5Days.cnt).toEqual(40);
+    const weatherFourDays = await apiRequest.weatherFourDays();
+    expect(weatherFourDays.cnt).toEqual(40);
   });
 
 });
