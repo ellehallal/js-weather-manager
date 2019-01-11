@@ -21,7 +21,7 @@ export class APIRequest {
   }
 
   formatOneDayData(data){
-    let info = {
+    return {
     temp: Math.round(data.list[0].main.temp),
     description: data.list[0].weather[0].description,
     mintemp: Math.round(data.list[0].main.temp_min),
@@ -29,7 +29,6 @@ export class APIRequest {
     location: data.list[0].name,
     icon: data.list[0].weather[0].icon,
     }
-    return info;
   }
 
 }
