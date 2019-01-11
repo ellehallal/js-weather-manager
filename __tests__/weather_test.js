@@ -27,12 +27,22 @@ describe('weather', () => {
   });
 
 
-  // describe('getOneDayWeather', () => {
-  //
-  //   it('returns London temperature as a string', async () => {
-  //     const londonWeather = await weather.getOneDayWeather();
-  //     expect(londonWeather.temp).toContain('°C');
-  //   });
+  describe('getOneDayWeather', () => {
+
+    it('returns London temperature as a string', async () => {
+      const weather = new Weather();
+      weather.getOneDayWeather();
+      const mockAPIRequestInstance = APIRequest.mock.instances[0];
+      const mockWeatherOneDay = mockAPIRequestInstance.weatherOneDay;
+      expect(mockWeatherOneDay).toHaveBeenCalledTimes(1);
+
+
+    });
+
+    // it('returns London temperature as a string', async () => {
+    //   const londonWeather = await weather.getOneDayWeather();
+    //   expect(londonWeather.temp).toContain('°C');
+    // });
   //
   //   it('returns description of London weather as a string', async () => {
   //     const londonWeather = await weather.getOneDayWeather();
@@ -53,7 +63,7 @@ describe('weather', () => {
   //     const londonWeather = await weather.getOneDayWeather();
   //     expect(londonWeather.location).toContain('London');
   //   });
-  // });
+  });
   //
   //
   // describe('getDatesAndTimes', () => {
