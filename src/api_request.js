@@ -10,7 +10,7 @@ export class APIRequest {
     return data;
   }
 
-  async weatherFiveDays() {
+  async weatherFourDays() {
     const url = 'https://api.openweathermap.org/data/2.5/forecast?q=London,UK&units=metric';
     const response = await fetch(url + '&appid=' + process.env.API_KEY);
     const data = await response.json();

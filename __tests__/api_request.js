@@ -19,7 +19,7 @@ describe('APIRequest', () => {
   });
 
   it('gets 5 day data and returns the value of "cnt" ', async () => {
-    const londonWeather5Days = await apiRequest.weatherFiveDays();
+    const londonWeather5Days = await apiRequest.weatherFourDays();
     expect(londonWeather5Days.cnt).toEqual(40);
   });
 

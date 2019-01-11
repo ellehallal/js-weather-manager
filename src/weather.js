@@ -95,7 +95,7 @@ export class Weather {
 
   async createForecastObject() {
     const timeStamps = this.getDatesAndTimes();
-    const data = await this.apiRequest.weatherFiveDays();
+    const data = await this.apiRequest.weatherFourDays();
 
     const datalist = data.list;
     let forecastObject = [];
@@ -124,7 +124,7 @@ export class Weather {
   }
 
   async getForecastData(obj){
-    const data = await this.apiRequest.weatherFiveDays();
+    const data = await this.apiRequest.weatherFourDays();
     const datalist = data.list;
 
     datalist.forEach((item) => {
