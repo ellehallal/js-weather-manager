@@ -79,4 +79,11 @@ describe('weather', () => {
     });
   });
 
+  describe('removeDuplicates', () => {
+    it('removes duplicate objects from an array, based on the specified key', () => {
+      let arr = [{id: 1}, {id: 1}, {id: 1}, {id: 2}]
+      expect(weather.removeDuplicates(arr, 'id')).toEqual([{id: 1}, {id: 2}]);
+    });
+  });
+
 });
