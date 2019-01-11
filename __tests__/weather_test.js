@@ -22,6 +22,10 @@ describe('weather', () => {
     expect(APIRequest).toHaveBeenCalledTimes(1);
   });
 
+  it('checks for a new instance of APIRequest', () => {
+    expect(APIRequest).not.toHaveBeenCalled();
+  });
+
 
   // describe('getOneDayWeather', () => {
   //
