@@ -10,12 +10,14 @@ export class APIRequest {
     return data;
   }
 
-  weatherOneDay() {
-    return this.getWeatherData('find')
+  async weatherOneDay() {
+    const data = await this.getWeatherData('find')
+    const formatData = await this.formatOneDayData(data)
+    return formatData
   }
 
-  weatherFourDays() {
-    return this.getWeatherData('forecast')
+  async weatherFourDays() {
+    return await this.getWeatherData('forecast')
   }
 
   formatOneDayData(data){

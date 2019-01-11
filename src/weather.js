@@ -70,8 +70,7 @@ export class Weather {
 
 
   async getOneDayWeather(){
-    const data = await this.apiRequest.weatherOneDay();
-    let todayWeather = this.apiRequest.formatOneDayData(data)
+    let todayWeather = await this.apiRequest.weatherOneDay();
 
     todayWeather.temp = this.convertZeroFormatTemperature(todayWeather.temp);
     todayWeather.mintemp = this.convertZeroFormatTemperature(todayWeather.mintemp);
