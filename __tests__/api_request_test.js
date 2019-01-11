@@ -15,7 +15,8 @@ describe('APIRequest', () => {
 
   it('gets 1 day data and returns the value "name" ', async () => {
     const weatherOneDay = await apiRequest.weatherOneDay();
-    expect(weatherOneDay.list[0].name).toEqual('London');
+    console.log(weatherOneDay)
+    expect(weatherOneDay.location).toEqual('London');
   });
 
   it('gets 5 day data and returns the value of "cnt" ', async () => {

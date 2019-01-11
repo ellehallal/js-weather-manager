@@ -10,12 +10,26 @@ export class APIRequest {
     return data;
   }
 
-  weatherOneDay() {
-    return this.getWeatherData('find')
+  async weatherOneDay() {
+    const data = await this.getWeatherData('find')
+    const formatData = this.formatOneDayData(data)
+    return formatData
   }
 
-  weatherFourDays() {
-    return this.getWeatherData('forecast')
+  async weatherFourDays() {
+    return await this.getWeatherData('forecast')
+  }
+
+  formatOneDayData(data){
+    let info = {
+    temp: Math.round(data.list[0].main.temp),
+    description: data.list[0].weather[0].description,
+    mintemp: Math.round(data.list[0].main.temp_min),
+    maxtemp: Math.round(data.list[0].main.temp_max),
+    location: data.list[0].name,
+    icon: data.list[0].weather[0].icon,
+    }
+    return info;
   }
 
 }
