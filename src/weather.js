@@ -52,10 +52,11 @@ export class Weather {
     }
   }
 
-  convertZeroTemperature(temperature) {
+  convertZeroFormatTemperature(temperature) {
     if(temperature === -0){
       temperature = 0
     }
+    temperature = `${temperature}\xB0C`
     return temperature
   }
 
@@ -70,26 +71,12 @@ export class Weather {
 
   async getOneDayWeather(){
     const data = await this.apiRequest.weatherOneDay();
-    let temp = Math.round(data.list[0].main.temp);
-    const description = data.list[0].weather[0].description;
-    let minTemp = Math.round(data.list[0].main.temp_min);
-    let maxTemp = Math.round(data.list[0].main.temp_max);
-    const location = data.list[0].name;
-    const icon = data.list[0].weather[0].icon
+    let todayWeather = this.apiRequest.formatOneDayData(data)
 
-    this.convertZeroTemperature(temp);
-    this.convertZeroTemperature(minTemp);
-    this.convertZeroTemperature(maxTemp);
+    todayWeather.temp = this.convertZeroFormatTemperature(todayWeather.temp);
+    todayWeather.mintemp = this.convertZeroFormatTemperature(todayWeather.mintemp);
+    todayWeather.maxtemp =this.convertZeroFormatTemperature(todayWeather.maxtemp);
 
-
-    const todayWeather = {
-      temp: `${temp}\xB0C`,
-      description: description,
-      mintemp: `${minTemp}\xB0C`,
-      maxtemp: `${maxTemp}\xB0C`,
-      location: location,
-      icon: icon,
-    };
     return todayWeather;
   }
 
@@ -134,7 +121,7 @@ export class Weather {
         let temp = Math.round(item.main.temp);
 
         if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
-          this.convertZeroTemperature(temp);
+          this.convertZeroFormatTemperature(temp);
 
           obj.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
