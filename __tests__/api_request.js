@@ -10,7 +10,7 @@ describe('APIRequest', () => {
   });
 
   it('creates a new instance of APIRequest', () => {
-    expect(apiRequest instanceof APIRequest).toEqual(true);
+    expect(apiRequest).toBeInstanceOf(APIRequest);
   });
 
   it('gets 1 day data and returns the value "name" ', async () => {

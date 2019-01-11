@@ -56,6 +56,7 @@ export class Weather {
     if(temperature === -0){
       temperature = 0
     }
+    return temperature
   }
 
   removeDuplicates(array, key) {
