@@ -73,4 +73,10 @@ describe('weather', () => {
     });
   });
 
+  describe('convertZeroTemperature', () => {
+    it('converts -0 to 0', () => {
+      expect(weather.convertZeroTemperature(-0)).toEqual(0);
+    });
+  });
+
 });
