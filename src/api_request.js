@@ -12,7 +12,7 @@ export class APIRequest {
 
   async weatherOneDay() {
     const data = await this.getWeatherData('find')
-    const formatData = await this.formatOneDayData(data)
+    const formatData = this.formatOneDayData(data)
     return formatData
   }
 
