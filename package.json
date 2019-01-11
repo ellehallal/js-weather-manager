@@ -34,7 +34,9 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.6.0",
+    "install": "^0.12.2",
     "lodash": "^4.17.11",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.3.0",
+    "npm": "^6.5.0"
   }
 }

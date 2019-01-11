@@ -2,16 +2,17 @@ import { Weather } from '../src/weather';
 
 const weather = new Weather()
 
-async function displayOneDay () {
+async function displayTodayWeather() {
+  const data = await weather.getOneDayWeather();
+
   const todayHeader = document.getElementById('today-header')
   const todayTemp = document.getElementById('today-temp')
   const todayDescription = document.getElementById('today-description')
   const todayMinTemp = document.getElementById('today-min-temp')
   const todayMaxTemp = document.getElementById('today-max-temp')
   const todayIcon = document.getElementById('today-icon')
-  const data = await weather.getOneDayWeather();
 
-  todayHeader.innerHTML = `Today's weather in ${data.location}`
+  todayHeader.innerHTML = `Today in ${data.location}:`;
   todayTemp.innerHTML = data.temp;
   todayDescription.innerHTML = data.description;
   todayMaxTemp.innerHTML = data.maxtemp;
@@ -20,40 +21,62 @@ async function displayOneDay () {
 }
 
 async function displayForecast() {
-  const forecast = await weather.getForecast();
-  const displayForecast = document.getElementById('display-forecast')
+  const forecast = await weather.fourDayForecast();
+  const displayForecast = document.getElementById('display-forecast');
 
   forecast.forEach((obj) => {
-    let info = document.createElement("div")
-    info.classList.add("entry")
+    let dayForecast = document.createElement('div');
+    let dayForecastHeader = document.createElement('div');
+    let dayForecastDay = document.createElement('h3');
+    let dayForecastDate = document.createElement('p');
+    let dayForecastHR = document.createElement('hr');
+    dayForecast.classList.add('day-forecast');
+    dayForecastDay.innerHTML = `${obj.day}`;
+    dayForecastDate.innerHTML = `${obj.date}`;
+    dayForecastHeader.appendChild(dayForecastDay);
+    dayForecastHeader.appendChild(dayForecastDate);
+    dayForecastHeader.appendChild(dayForecastHR);
+    dayForecast.appendChild(dayForecastHeader);
 
-    let icon = document.createElement("img")
-    icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`
-    info.appendChild(icon)
+    let objectData = obj.data;
 
-    let day = document.createElement("p")
-    day.innerHTML = obj.day
-    info.appendChild(day);
+    objectData.forEach((obj) => {
+      let dayForecastData = document.createElement('div');
+      dayForecastData.classList.add('day-forecast-data');
 
-    let date = document.createElement("p")
-    date.innerHTML = obj.date
-    info.appendChild(date);
+      let time = document.createElement('p');
+      time.classList.add('forecast-time')
+      time.innerHTML = `Time: ${obj.time}`;
+      dayForecastData.appendChild(time);
 
-    let time = document.createElement("p")
-    time.innerHTML = obj.time
-    info.appendChild(time);
 
-    let temp = document.createElement("p")
-    temp.innerHTML = obj.temp
-    info.appendChild(temp);
+      let forecastIcon = document.createElement('div');
+      forecastIcon.classList.add('forecast-icon');
+      let icon = document.createElement('img');
+      icon.src = `http://openweathermap.org/img/w/${obj.icon}.png`;
+      forecastIcon.appendChild(icon);
+      dayForecastData.appendChild(forecastIcon);
 
-    let desc = document.createElement("p")
-    desc.innerHTML = obj.description
-    info.appendChild(desc)
+      let temp = document.createElement('p');
+      temp.innerHTML = obj.temp;
+      dayForecastData.appendChild(temp);
 
-    displayForecast.appendChild(info)
-  })
+      let desc = document.createElement('p');
+      desc.classList.add('forecast-description')
+      desc.innerHTML = obj.description;
+      dayForecastData.appendChild(desc);
+
+      let forecastHR = document.createElement('hr');
+      forecastHR.classList.add('forecast-hr');
+      dayForecastData.appendChild(forecastHR);
+
+      dayForecast.appendChild(dayForecastData);
+
+    });
+    displayForecast.appendChild(dayForecast);
+
+  });
 }
 
-displayOneDay()
-displayForecast()
+displayTodayWeather();
+displayForecast();

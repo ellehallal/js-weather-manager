@@ -4,12 +4,12 @@ import { APIRequest } from '../src/api_request';
 export class Weather {
 
   constructor(board) {
-    this.datesAndTimes = []
-    this.apiRequest = new APIRequest()
+    this.datesAndTimes = [];
+    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
+    this.apiRequest = new APIRequest();
   }
 
   getDatesAndTimes() {
-    const times = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
     const oneDay = 1000 * 60 * 60 * 24;
     const today = new Date();
     const todayPlus1 = new Date(today.getTime() + (oneDay));
@@ -26,12 +26,45 @@ export class Weather {
     });
 
     dateStrings.forEach((date) => {
-      times.forEach((time) => {
+      this.timeStamps.forEach((time) => {
         this.datesAndTimes.push(date + ' ' + time)
       })
     })
     return this.datesAndTimes
   };
+
+  convertDayToDate(day) {
+    switch (day) {
+      case 0:
+        return 'Sunday';
+      case 1:
+        return 'Monday';
+      case 2:
+        return 'Tuesday';
+      case 3:
+        return 'Wednesday';
+      case 4:
+        return 'Thursday';
+      case 5:
+        return 'Friday';
+      case 6:
+        return 'Saturday';
+    }
+  }
+
+  convertZeroTemperature(temperature) {
+    if(temperature === -0){
+      temperature = 0
+    }
+  }
+
+  removeDuplicates(array, key) {
+    const unique = array
+      .map(e => e[key])
+      .map((e, i, final) => final.indexOf(e) === i && i)
+      .filter(e => array[e]).map(e => array[e]);
+    return unique;
+};
 
 
   async getOneDayWeather(){
@@ -43,17 +76,10 @@ export class Weather {
     const location = data.list[0].name;
     const icon = data.list[0].weather[0].icon
 
-    if(temp === -0){
-      temp = 0
-    }
+    this.convertZeroTemperature(temp);
+    this.convertZeroTemperature(minTemp);
+    this.convertZeroTemperature(maxTemp);
 
-    if(minTemp === -0){
-      minTemp = 0
-    }
-
-    if(maxTemp === -0){
-      maxTemp = 0
-    }
 
     const todayWeather = {
       temp: `${temp}\xB0C`,
@@ -66,13 +92,12 @@ export class Weather {
     return todayWeather;
   }
 
-
-  async getForecast(){
+  async createForecastObject() {
     const timeStamps = this.getDatesAndTimes();
     const data = await this.apiRequest.weatherFiveDays();
 
     const datalist = data.list;
-    let result = [];
+    let forecastObject = [];
 
     datalist.forEach((date) => {
       timeStamps.forEach((timestamp) => {
@@ -80,50 +105,52 @@ export class Weather {
           let dateTime = date.dt_txt.split(' ');
           let dateFormatted = dateTime[0].split('-');
           let timeFormatted = dateTime[1].split(':');
-          let day = "";
-          let temp = Math.round(date.main.temp);
+          let day = '';
 
-          switch (new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay()) {
-            case 0:
-            day = "Sunday";
-            break;
-            case 1:
-            day = "Monday";
-            break;
-            case 2:
-            day = "Tuesday";
-            break;
-            case 3:
-            day = "Wednesday";
-            break;
-            case 4:
-            day = "Thursday";
-            break;
-            case 5:
-            day = "Friday";
-            break;
-            case 6:
-            day = "Saturday";
-          }
+          day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
-          if(temp === -0){
-            temp = 0
-          }
-
-          result.push({
+          forecastObject.push({
             day: day,
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
+            dt: dateTime[0],
+            data: [],
+          });
+        }
+      });
+    });
+    forecastObject = this.removeDuplicates(forecastObject, 'date');
+    return forecastObject;
+  }
+
+  async getForecastData(obj){
+    const data = await this.apiRequest.weatherFiveDays();
+    const datalist = data.list;
+
+    datalist.forEach((item) => {
+      obj.forEach((obj) => {
+        let dateTime = item.dt_txt.split(' ');
+        let timeFormatted = dateTime[1].split(':');
+        let temp = Math.round(item.main.temp);
+
+        if(dateTime[0] === obj.dt && this.timeStamps.includes(dateTime[1])){
+          this.convertZeroTemperature(temp);
+
+          obj.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
             temp: `${temp}\xB0C`,
-            description: date.weather[0].description,
-            icon: date.weather[0].icon,
-          })
+            description: item.weather[0].description,
+            icon: item.weather[0].icon,
+          });
         }
-      })
-    })
-
-    return result;
+      });
+    });
+    return obj;
   }
 
 
+  async fourDayForecast(){
+    let forecastObject = await this.createForecastObject();
+    let forecastData = await this.getForecastData(forecastObject);
+    return forecastData;
+  }
 }
