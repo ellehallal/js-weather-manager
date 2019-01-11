@@ -29,14 +29,12 @@ describe('weather', () => {
 
   describe('getOneDayWeather', () => {
 
-    it('returns London temperature as a string', async () => {
+    it('checks if getOneDayWeather calls the APIRequest method weatherOneDay', async () => {
       const weather = new Weather();
       weather.getOneDayWeather();
       const mockAPIRequestInstance = APIRequest.mock.instances[0];
       const mockWeatherOneDay = mockAPIRequestInstance.weatherOneDay;
       expect(mockWeatherOneDay).toHaveBeenCalledTimes(1);
-
-
     });
 
     // it('returns London temperature as a string', async () => {
@@ -74,7 +72,14 @@ describe('weather', () => {
   // });
   //
   //
-  // describe('fourDayForecast', () => {
+  describe('fourDayForecast', () => {
+    it('checks if fourdayForecast calls the APIRequest method weatherFourDays()', async () => {
+      const weather = new Weather();
+      weather.fourDayForecast();
+      const mockAPIRequestInstance = APIRequest.mock.instances[0];
+      const mockWeatherOneDay = mockAPIRequestInstance.weatherFourDays;
+      expect(mockWeatherOneDay).toHaveBeenCalledTimes(1);
+    });
   //
   //   it('creates an array containing 4 objects', async () => {
   //     const data = await weather.fourDayForecast();
@@ -100,7 +105,7 @@ describe('weather', () => {
   //     const data = await weather.fourDayForecast();
   //     expect(data[0].data[0].temp).toContain('°C');
   //   });
-  // });
+  });
   //
   //
   // describe('convertDayToDate', () => {
