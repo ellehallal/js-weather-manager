@@ -10,7 +10,7 @@ describe('weather', () => {
   });
 
   it('creates a new instance of Weather', () => {
-    expect(weather instanceof Weather).toEqual(true);
+    expect(weather).toBeInstanceOf(Weather);
   });
 
   it('returns London temperature as a string', async () => {
@@ -65,6 +65,12 @@ describe('weather', () => {
   it('returns the temp for the first object in the array', async () => {
     const data = await weather.fourDayForecast();
     expect(data[0].data[0].temp).toContain('°C');
+  });
+
+  describe('convertDayToDate', () => {
+    it('converts the day as an integer to a string with the day name', () => {
+      expect(weather.convertDayToDate(6)).toEqual('Saturday');
+    });
   });
 
 });
