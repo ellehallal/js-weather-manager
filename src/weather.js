@@ -33,8 +33,8 @@ export class Weather {
     return this.datesAndTimes;
   }
 
-  async getOneDayWeather() {
-    const todayWeather = await this.apiRequest.weatherOneDay();
+  getOneDayWeather() {
+    const todayWeather = this.apiRequest.weatherOneDay();
     todayWeather.temp = this.convertZeroFormatTemperature(todayWeather.temp);
     todayWeather.mintemp = this.convertZeroFormatTemperature(todayWeather.mintemp);
     todayWeather.maxtemp = this.convertZeroFormatTemperature(todayWeather.maxtemp);
@@ -79,9 +79,9 @@ export class Weather {
   }
 
 
-  async fourDayForecast() {
+  fourDayForecast() {
     const timeStamps = this.getDatesAndTimes();
-    const data = await this.apiRequest.weatherFourDays();
+    const data = this.apiRequest.weatherFourDays();
 
     const datalist = data.list;
     let forecastObject = [];

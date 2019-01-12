@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 
 export class APIRequest {
+  
   async getWeatherData(callType) {
     const url = `https://api.openweathermap.org/data/2.5/${callType}?q=London,UK&units=metric`;
 
