@@ -40,6 +40,9 @@ async function displayForecast() {
     dayForecastHeader.appendChild(dayForecastHR);
     dayForecast.appendChild(dayForecastHeader);
 
+    const dayForecastDataContainer = document.createElement('div');
+    dayForecastDataContainer.classList.add('day-forecast-data-container');
+
     const objectData = obj.data;
 
     objectData.forEach((object) => {
@@ -68,12 +71,9 @@ async function displayForecast() {
       desc.innerHTML = object.description;
       dayForecastData.appendChild(desc);
 
-      const forecastHR = document.createElement('hr');
-      forecastHR.classList.add('forecast-hr');
-      dayForecastData.appendChild(forecastHR);
-
-      dayForecast.appendChild(dayForecastData);
+      dayForecastDataContainer.appendChild(dayForecastData);
     });
+    dayForecast.appendChild(dayForecastDataContainer);
     display4Forecast.appendChild(dayForecast);
   });
 }
