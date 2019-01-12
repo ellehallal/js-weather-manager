@@ -7,7 +7,6 @@
     "lint": "eslint src/*.js",
     "test": "jest",
     "watch": "node_modules/.bin/webpack --watch",
-    "prestart": "npm install",
     "start": "node server.js"
   },
   "repository": {
@@ -42,5 +41,9 @@
     "node-fetch": "^2.3.0",
     "npm": "^6.5.0",
     "prettier": "^1.15.3"
+  },
+  "engines": {
+    "node": "11.6.0",
+    "npm": "6.5.0"
   }
 }
