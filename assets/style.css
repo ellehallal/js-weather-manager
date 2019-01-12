@@ -23,8 +23,7 @@ h2{
 }
 
 h3{
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin: 0;
   text-align: center;
 }
 
@@ -38,6 +37,7 @@ hr {
   width: 96%;
   border: 1px solid #C0C0C0;
 }
+
 i {
   padding-left: 25%;
 }
@@ -117,10 +117,9 @@ i {
 
 #display-forecast{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-around;
-  min-width: 80vw;
+  min-width: 60vw;
 }
 
 #forecast-header{
@@ -128,7 +127,10 @@ i {
 }
 
 .day-forecast{
-  margin: 0.5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 2% 0;
   padding: 1%;
   background-color: #FFF;
   -webkit-border-radius: 10px;
@@ -142,8 +144,11 @@ i {
   font-size: 0.8rem;
 }
 
-.day-forecast-data{
-  padding-top: 5%;
+.day-forecast-data-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .forecast-icon{

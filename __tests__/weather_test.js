@@ -38,7 +38,7 @@ describe('weather', () => {
 
     it('returns an array of 16 dates and times as strings in an array', () => {
       const weather = new Weather();
-      expect(weather.getDatesAndTimes().length).toEqual(16);
+      expect(weather.getDatesAndTimes().length).toEqual(20);
     });
   });
 

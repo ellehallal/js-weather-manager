@@ -13,7 +13,7 @@ describe('APIRequest', () => {
     expect(apiRequest).toBeInstanceOf(APIRequest);
   });
 
-  it('gets 1 day data, formats it and returns the value "name" ', async () => {
+  it('gets 1 day data, formats it and returns the value "London" ', async () => {
     const weatherOneDay = await apiRequest.weatherOneDay();
     expect(weatherOneDay.location).toEqual('London');
   });
