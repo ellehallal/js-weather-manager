@@ -5,7 +5,7 @@ require('dotenv').config();
 export class Weather {
   constructor() {
     this.datesAndTimes = [];
-    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00'];
+    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00', '21:00:00'];
     this.apiRequest = new APIRequest();
   }
 
