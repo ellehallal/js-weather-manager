@@ -32,6 +32,7 @@ async function displayForecast() {
     const dayForecastHR = document.createElement('hr');
 
     dayForecast.classList.add('day-forecast');
+    dayForecastHeader.classList.add('day-forecast-header');
     dayForecastDay.innerHTML = `${obj.day}`;
     dayForecastDate.innerHTML = `${obj.date}`;
     dayForecastHeader.appendChild(dayForecastDay);
