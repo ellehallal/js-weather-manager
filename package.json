@@ -7,8 +7,7 @@
     "lint": "eslint src/*.js",
     "test": "jest",
     "watch": "node_modules/.bin/webpack --watch",
-    "start": "node server.js",
-    "heroku-postbuild": "webpack -p"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
