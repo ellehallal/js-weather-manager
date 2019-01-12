@@ -7,7 +7,8 @@
     "lint": "eslint src/*.js",
     "test": "jest",
     "watch": "node_modules/.bin/webpack --watch",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
+    "dotenv": "^6.2.0",
+    "dotenv-webpack": "^1.6.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -33,8 +36,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "dotenv": "^6.2.0",
-    "dotenv-webpack": "^1.6.0",
     "express": "^4.16.4",
     "install": "^0.12.2",
     "lodash": "^4.17.11",
