@@ -79,7 +79,7 @@ export class Weather {
   }
 
 
-  async createForecastObject() {
+  async fourDayForecast() {
     const timeStamps = this.getDatesAndTimes();
     const data = await this.apiRequest.weatherFourDays();
 
@@ -105,15 +105,9 @@ export class Weather {
       });
     });
     forecastObject = this.removeDuplicates(forecastObject, 'date');
-    return forecastObject;
-  }
-
-  async getForecastData(obj) {
-    const data = await this.apiRequest.weatherFourDays();
-    const datalist = data.list;
 
     datalist.forEach((item) => {
-      obj.forEach((object) => {
+      forecastObject.forEach((object) => {
         const dateTime = item.dt_txt.split(' ');
         const timeFormatted = dateTime[1].split(':');
         const temp = Math.round(item.main.temp);
@@ -130,13 +124,6 @@ export class Weather {
         }
       });
     });
-    return obj;
-  }
-
-
-  async fourDayForecast() {
-    const forecastObject = await this.createForecastObject();
-    const forecastData = await this.getForecastData(forecastObject);
-    return forecastData;
+    return forecastObject;
   }
 }
