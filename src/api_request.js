@@ -4,13 +4,20 @@ require('dotenv').config();
 export class APIRequest {
   async getWeatherData(callType) {
     const url = `https://api.openweathermap.org/data/2.5/${callType}?q=London,UK&units=metric`;
-    const response = await fetch(url + '&appid=' + process.env.API_KEY);
-    const data = await response.json();
-    return data;
+
+    try {
+      const response = await fetch(url + '&appid=' + process.env.API_KEY);
+      const data = await response.json();
+      if (!data) return `${callType} not found`;
+      return data;
+
+    } catch(err) {
+      return `${callType}: Unexpected error occurred`;
+    }
   }
 
   async weatherOneDay() {
-    const data = await this.getWeatherData('find');
+    const data = this.getWeatherData('find');
     const formatData = this.formatOneDayData(data);
     return formatData;
   }
