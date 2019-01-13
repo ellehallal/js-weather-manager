@@ -10,4 +10,4 @@
 ### Stretch Goals
 - [ ] Select a city from a list, and display the weather for it
 - [ ] Have a user type in a city, and display the weather for it
-- [ ] Make it look pretty
+- [x] Make it look pretty
