@@ -1,6 +1,5 @@
 import { APIRequest } from './api_request';
 
-require('dotenv').config();
 
 export class Weather {
   constructor() {
