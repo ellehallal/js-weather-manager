@@ -55,7 +55,7 @@ async function displayForecast() {
 
       const time = document.createElement('p');
       time.classList.add('forecast-time');
-      time.innerHTML = `Time: ${object.time}`;
+      time.innerHTML = object.time;
       dayForecastData.appendChild(time);
 
 
@@ -74,6 +74,9 @@ async function displayForecast() {
       desc.classList.add('forecast-description');
       desc.innerHTML = object.description;
       dayForecastData.appendChild(desc);
+
+      const hr = document.createElement('hr');
+      dayForecastData.appendChild(hr);
 
       dayForecastDataContainer.appendChild(dayForecastData);
     });
