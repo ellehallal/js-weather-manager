@@ -4,7 +4,7 @@ import { APIRequest } from './api_request';
 export class Weather {
   constructor() {
     this.datesAndTimes = [];
-    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00', '21:00:00'];
+    this.timeStamps = ['00:00:00', '06:00:00', '09:00:00', '12:00:00', '18:00:00', '21:00:00'];
     this.apiRequest = new APIRequest();
   }
 
@@ -30,6 +30,14 @@ export class Weather {
       });
     });
     return this.datesAndTimes;
+  }
+
+  convertZeroFormatTemperature(temperature) {
+    if (Object.is(temperature, -0)) {
+      temperature = 0;
+    }
+    temperature = `${temperature}\xB0C`;
+    return temperature;
   }
 
   async getOneDayWeather() {
@@ -61,13 +69,6 @@ export class Weather {
     }
   }
 
-  convertZeroFormatTemperature(temperature) {
-    if (Object.is(temperature, -0)) {
-      temperature = 0;
-    }
-    temperature = `${temperature}\xB0C`;
-    return temperature;
-  }
 
   removeDuplicates(array, key) {
     const unique = array

@@ -35,6 +35,7 @@ export class APIRequest {
       maxtemp: Math.round(data.list[0].main.temp_max),
       location: data.list[0].name,
       icon: data.list[0].weather[0].icon,
+      maindescription: data.list[0].weather[0].main,
     };
   }
 }
