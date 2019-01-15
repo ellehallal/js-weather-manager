@@ -11,6 +11,7 @@ async function displayTodayWeather() {
   const todayMinTemp = document.getElementById('today-min-temp');
   const todayMaxTemp = document.getElementById('today-max-temp');
   const todayIcon = document.getElementById('today-icon');
+  const backgroundImg = `url('./assets/${data.maindescription}.jpg')`;
 
   todayHeader.innerHTML = `Today in ${data.location}:`;
   todayTemp.innerHTML = data.temp;
@@ -18,6 +19,9 @@ async function displayTodayWeather() {
   todayMaxTemp.innerHTML = data.maxtemp;
   todayMinTemp.innerHTML = data.mintemp;
   todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`;
+  document.body.style.backgroundImage = backgroundImg
+
+
 }
 
 async function displayForecast() {

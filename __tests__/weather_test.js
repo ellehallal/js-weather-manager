@@ -38,7 +38,7 @@ describe('weather', () => {
 
     it('returns an array of 16 dates and times as strings in an array', () => {
       const weather = new Weather();
-      expect(weather.getDatesAndTimes().length).toEqual(20);
+      expect(weather.getDatesAndTimes().length).toEqual(24);
     });
   });
 
@@ -62,10 +62,10 @@ describe('weather', () => {
   });
 
 
-  describe('convertZeroFormatTemperature', () => {
+  describe('formatTemperature', () => {
     it('converts -0 to 0', () => {
       const weather = new Weather();
-      expect(weather.convertZeroFormatTemperature(-0)).toEqual('0°C');
+      expect(weather.formatTemperature(-0)).toEqual('0°C');
     });
   });
 

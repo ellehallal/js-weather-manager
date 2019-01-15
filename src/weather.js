@@ -112,10 +112,9 @@ export class Weather {
       forecastObject.forEach((object) => {
         const dateTime = item.dt_txt.split(' ');
         const timeFormatted = dateTime[1].split(':');
-        let temp = item.main.temp;
+        let temp = this.formatTemperature(item.main.temp);
 
         if (dateTime[0] === object.dt && this.timeStamps.includes(dateTime[1])) {
-          temp = this.formatTemperature(temp);
 
           object.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,

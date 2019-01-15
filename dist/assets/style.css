@@ -9,7 +9,6 @@ html {
 body {
   color: #222;
   font-family: 'Roboto', sans-serif;
-  background-image: url("background.png");
   background-size: cover;
 }
 
@@ -20,6 +19,8 @@ h1 {
 
 h2{
   text-align: center;
+  font-size: 1.6rem;
+  margin: 0 auto;
 }
 
 h3{
@@ -123,7 +124,11 @@ i {
 }
 
 #forecast-header{
-  font-size: 1.6rem;
+  background-color: #FFF;
+  padding: 1%;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .day-forecast{
