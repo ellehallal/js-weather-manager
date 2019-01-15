@@ -4,7 +4,7 @@ import { APIRequest } from './api_request';
 export class Weather {
   constructor() {
     this.datesAndTimes = [];
-    this.timeStamps = ['00:00:00', '06:00:00', '12:00:00', '18:00:00', '21:00:00'];
+    this.timeStamps = ['00:00:00', '06:00:00', '09:00:00', '12:00:00', '18:00:00', '21:00:00'];
     this.apiRequest = new APIRequest();
   }
 
@@ -32,11 +32,21 @@ export class Weather {
     return this.datesAndTimes;
   }
 
+  formatTemperature(temperature) {
+    let roundedTemp = Math.round(temperature)
+
+    if (Object.is(roundedTemp, -0)) {
+      roundedTemp = 0;
+    }
+    temperature = `${roundedTemp}\xB0C`;
+    return temperature;
+  }
+
   async getOneDayWeather() {
     const todayWeather = await this.apiRequest.weatherOneDay();
-    todayWeather.temp = this.convertZeroFormatTemperature(todayWeather.temp);
-    todayWeather.mintemp = this.convertZeroFormatTemperature(todayWeather.mintemp);
-    todayWeather.maxtemp = this.convertZeroFormatTemperature(todayWeather.maxtemp);
+    todayWeather.temp = this.formatTemperature(todayWeather.temp);
+    todayWeather.mintemp = this.formatTemperature(todayWeather.mintemp);
+    todayWeather.maxtemp = this.formatTemperature(todayWeather.maxtemp);
     return todayWeather;
   }
 
@@ -61,13 +71,6 @@ export class Weather {
     }
   }
 
-  convertZeroFormatTemperature(temperature) {
-    if (Object.is(temperature, -0)) {
-      temperature = 0;
-    }
-    temperature = `${temperature}\xB0C`;
-    return temperature;
-  }
 
   removeDuplicates(array, key) {
     const unique = array
@@ -109,14 +112,13 @@ export class Weather {
       forecastObject.forEach((object) => {
         const dateTime = item.dt_txt.split(' ');
         const timeFormatted = dateTime[1].split(':');
-        const temp = Math.round(item.main.temp);
+        let temp = this.formatTemperature(item.main.temp);
 
         if (dateTime[0] === object.dt && this.timeStamps.includes(dateTime[1])) {
-          this.convertZeroFormatTemperature(temp);
 
           object.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
-            temp: `${temp}\xB0C`,
+            temp: temp,
             description: item.weather[0].description,
             icon: item.weather[0].icon,
           });
