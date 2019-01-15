@@ -5,8 +5,6 @@ export class APIRequest {
 
   async getWeatherData(callType) {
     const url = `https://api.openweathermap.org/data/2.5/${callType}?q=London,UK&units=metric`;
-    console.log(process.env.API_KEY)
-    console.log("+++++++")
 
     try {
       const response = await fetch(url + '&appid=' + process.env.API_KEY);
