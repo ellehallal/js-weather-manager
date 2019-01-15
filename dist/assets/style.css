@@ -1,16 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
 
 html {
-  color: #222;
+  color: #FFF;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
   font-size: 1.5em;
   font-weight: 500;
 }
 
 body {
-  color: #222;
+  color: #FFF;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
   font-family: 'Roboto', sans-serif;
   background-size: cover;
-  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
@@ -59,11 +60,13 @@ i {
   align-content: center;
   justify-content: center;
   padding: 3%;
-  background-color: #FFF;
+  background-color: rgba(82, 82, 82, 0.37);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  box-shadow: 5px 5px 14px -1px rgba(158, 158, 158, 0.57);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
 
 }
 
@@ -126,7 +129,7 @@ i {
 }
 
 #forecast-header{
-  background-color: #FFF;
+  background-color: rgba(82, 82, 82, 0.37);
   padding: 1%;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -139,11 +142,13 @@ i {
   flex-wrap: wrap;
   margin: 2% 0;
   padding: 1%;
-  background-color: #FFF;
+  background-color: rgba(82, 82, 82, 0.37);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  box-shadow: 5px 5px 14px -1px rgba(158, 158, 158, 0.57);
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.2);
   min-width: 15vw;
 }
 
