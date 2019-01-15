@@ -29,10 +29,10 @@ export class APIRequest {
 
   formatOneDayData(data) {
     return {
-      temp: Math.round(data.list[0].main.temp),
+      temp: data.list[0].main.temp,
       description: data.list[0].weather[0].description,
-      mintemp: Math.round(data.list[0].main.temp_min),
-      maxtemp: Math.round(data.list[0].main.temp_max),
+      mintemp: data.list[0].main.temp_min,
+      maxtemp: data.list[0].main.temp_max,
       location: data.list[0].name,
       icon: data.list[0].weather[0].icon,
       maindescription: data.list[0].weather[0].main,
