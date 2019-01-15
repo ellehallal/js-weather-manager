@@ -11,7 +11,7 @@ async function displayTodayWeather() {
   const todayMinTemp = document.getElementById('today-min-temp');
   const todayMaxTemp = document.getElementById('today-max-temp');
   const todayIcon = document.getElementById('today-icon');
-  const backgroundImg = `url('./assets/${data.maindescription}.jpg')`;
+  const backgroundImg = `url('./assets/Clear.jpg')`;
 
   todayHeader.innerHTML = `Today in ${data.location}:`;
   todayTemp.innerHTML = data.temp;

@@ -1,18 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
 
 html {
-  color: #FFF;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
   font-size: 1.5em;
   font-weight: 500;
 }
 
 body {
   color: #FFF;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
   font-family: 'Roboto', sans-serif;
   background-size: cover;
   background-attachment: fixed;
+
 }
 
 h1 {
@@ -39,7 +38,9 @@ p{
 
 hr {
   width: 96%;
-  border: 1px solid #C0C0C0;
+  border-bottom: 1px solid #1f1209;
+  box-shadow: 0px 20px 20px -20px #333;
+
 }
 
 i {
@@ -60,7 +61,7 @@ i {
   align-content: center;
   justify-content: center;
   padding: 3%;
-  background-color: rgba(82, 82, 82, 0.37);
+  background-color: rgba(82, 82, 82, 0.80);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -129,7 +130,7 @@ i {
 }
 
 #forecast-header{
-  background-color: rgba(82, 82, 82, 0.37);
+  background-color: rgba(82, 82, 82, 0.80);
   padding: 1%;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -142,7 +143,7 @@ i {
   flex-wrap: wrap;
   margin: 2% 0;
   padding: 1%;
-  background-color: rgba(82, 82, 82, 0.37);
+  background-color: rgba(82, 82, 82, 0.80);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -153,11 +154,11 @@ i {
 }
 
 .day-forecast > *{
-  font-size: 0.6rem;
 }
 
 .day-forecast-data{
   margin: 2% 0;
+  font-size: 0.8rem;
 }
 
 
@@ -186,13 +187,13 @@ i {
   }
  }
 
-@media only screen and (min-width: 480px) and (max-width: 991px){
+@media only screen and (min-width: 480px) and (max-width: 1300px){
   .day-forecast-data{
     min-width: 30%;
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1999px){
+@media only screen and (min-width: 1301px) and (max-width: 1999px){
   .day-forecast-data{
     min-width: 10%;
   }
