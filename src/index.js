@@ -11,7 +11,7 @@ async function displayTodayWeather() {
   const todayMinTemp = document.getElementById('today-min-temp');
   const todayMaxTemp = document.getElementById('today-max-temp');
   const todayIcon = document.getElementById('today-icon');
-  const backgroundImg = `url('./assets/${data.maindescription}.jpg')`;
+  const backgroundImg = displayBackground(data.id);
 
   todayHeader.innerHTML = `Today in ${data.location}:`;
   todayTemp.innerHTML = data.temp;
@@ -20,7 +20,6 @@ async function displayTodayWeather() {
   todayMinTemp.innerHTML = data.mintemp;
   todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`;
   document.body.style.backgroundImage = backgroundImg
-
 
 }
 
@@ -84,6 +83,35 @@ async function displayForecast() {
     dayForecast.appendChild(dayForecastDataContainer);
     display4Forecast.appendChild(dayForecast);
   });
+}
+
+displayBackground(id){
+  switch (true) {
+    case (id < 300):
+      return "url('./assets/Thunderstorm.jpg')";
+      break;
+    case (id < 400):
+      return "url('./assets/Drizzle.jpg')";
+      break;
+    case (id >= 500 && id < 600):
+      return "url('./assets/Rain.jpg')";
+      break;
+    case (id < 600):
+      return "url('./assets/Snow.jpg')";
+      break;
+    case (id < 700):
+      return "url('./assets/Atmosphere.jpg')";
+      break;
+    case (id === 800):
+      return "url('./assets/Clear.jpg')";
+      break;
+    case (id > 800 && id < 900):
+      return "url('./assets/Clouds.jpg')";
+      break;
+    default:
+      return "url('./assets/Clear.jpg')";
+      break;
+  }
 }
 
 displayTodayWeather();
