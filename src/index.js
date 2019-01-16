@@ -85,7 +85,7 @@ async function displayForecast() {
   });
 }
 
-displayBackground(id){
+function displayBackground(id) {
   switch (true) {
     case (id < 300):
       return "url('./assets/Thunderstorm.jpg')";
