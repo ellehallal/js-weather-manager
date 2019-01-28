@@ -80,11 +80,10 @@ async function displayForecast() {
       time.innerHTML = object.time;
       dayForecastData.appendChild(time);
 
-
       const forecastIcon = document.createElement('div');
       forecastIcon.classList.add('forecast-icon');
       const icon = document.createElement('img');
-      icon.src = `http://openweathermap.org/img/w/${object.icon}.png`;
+      icon.src = `https://openweathermap.org/img/w/${object.icon}.png`;
       forecastIcon.appendChild(icon);
       dayForecastData.appendChild(forecastIcon);
 
