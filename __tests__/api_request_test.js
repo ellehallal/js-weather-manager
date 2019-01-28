@@ -2,6 +2,8 @@ const fetch = require('node-fetch')
 
 import { APIRequest } from '../src/api_request';
 
+jest.mock("../src/api_request");
+
 describe('APIRequest', () => {
 
   let apiRequest;
@@ -9,18 +11,35 @@ describe('APIRequest', () => {
     apiRequest = new APIRequest();
   });
 
-  it('creates a new instance of APIRequest', () => {
-    expect(apiRequest).toBeInstanceOf(APIRequest);
+  describe('getWeatherData()', () => {
+    it('tests the getSearchResultData function', async () => {
+      await apiRequest.getWeatherData('find');
+      expect(apiRequest.getWeatherData).toHaveBeenCalled()
+      expect(apiRequest.getWeatherData).toHaveBeenCalledTimes(1)
+      expect(apiRequest.getWeatherData).toHaveBeenCalledWith('find')
+    });
+
+    it('tests the getSearchResultData function', async () => {
+      await apiRequest.getWeatherData('forecast');
+      expect(apiRequest.getWeatherData).toHaveBeenCalled()
+      expect(apiRequest.getWeatherData).toHaveBeenCalledTimes(1)
+      expect(apiRequest.getWeatherData).toHaveBeenCalledWith('forecast')
+    });
   });
 
-  it('gets 1 day data, formats it and returns the value "London" ', async () => {
-    const weatherOneDay = await apiRequest.weatherOneDay();
-    expect(weatherOneDay.location).toEqual('London');
+  describe('weatherOneDay()', () => {
+    it('tests the weatherOneDay function', async () => {
+      await apiRequest.weatherOneDay();
+      expect(apiRequest.weatherOneDay).toHaveBeenCalled()
+      expect(apiRequest.weatherOneDay).toHaveBeenCalledTimes(1)
+    });
   });
 
-  it('gets 5 day data and returns the value of "cnt" ', async () => {
-    const weatherFourDays = await apiRequest.weatherFourDays();
-    expect(weatherFourDays.cnt).toEqual(40);
+  describe('weatherFourDays()', () => {
+    it('tests the weatherFourDays function', async () => {
+      await apiRequest.weatherFourDays();
+      expect(apiRequest.weatherFourDays).toHaveBeenCalled()
+      expect(apiRequest.weatherFourDays).toHaveBeenCalledTimes(1)
+    });
   });
-
 });

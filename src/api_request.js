@@ -21,8 +21,8 @@ export class APIRequest {
   }
 
   async weatherFourDays() {
-    const fourDayForecast = await this.getWeatherData('forecast');
-    return fourDayForecast;
+    const data = await this.getWeatherData('forecast');
+    return data;
   }
 
   formatOneDayData(data) {
