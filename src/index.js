@@ -1,6 +1,29 @@
 import { Weather } from './weather';
+import { APIRequest } from './api_request';
 
-const weather = new Weather();
+const api = new APIRequest();
+const weather = new Weather(api);
+
+function displayBackground(id) {
+  switch (id) {
+    case (id < 300):
+      return "url('./assets/Thunderstorm.jpg')";
+    case (id < 400):
+      return "url('./assets/Drizzle.jpg')";
+    case (id >= 500 && id < 600):
+      return "url('./assets/Rain.jpg')";
+    case (id < 600):
+      return "url('./assets/Snow.jpg')";
+    case (id < 700):
+      return "url('./assets/Atmosphere.jpg')";
+    case (id === 800):
+      return "url('./assets/Clear.jpg')";
+    case (id > 800 && id < 900):
+      return "url('./assets/Clouds.jpg')";
+    default:
+      return "url('./assets/Clear.jpg')";
+  }
+}
 
 async function displayTodayWeather() {
   const data = await weather.getOneDayWeather();
@@ -18,9 +41,8 @@ async function displayTodayWeather() {
   todayDescription.innerHTML = data.description;
   todayMaxTemp.innerHTML = data.maxtemp;
   todayMinTemp.innerHTML = data.mintemp;
-  todayIcon.src = `http://openweathermap.org/img/w/${data.icon}.png`;
-  document.body.style.backgroundImage = backgroundImg
-
+  todayIcon.src = `https://openweathermap.org/img/w/${data.icon}.png`;
+  document.body.style.backgroundImage = backgroundImg;
 }
 
 async function displayForecast() {
@@ -58,11 +80,10 @@ async function displayForecast() {
       time.innerHTML = object.time;
       dayForecastData.appendChild(time);
 
-
       const forecastIcon = document.createElement('div');
       forecastIcon.classList.add('forecast-icon');
       const icon = document.createElement('img');
-      icon.src = `http://openweathermap.org/img/w/${object.icon}.png`;
+      icon.src = `https://openweathermap.org/img/w/${object.icon}.png`;
       forecastIcon.appendChild(icon);
       dayForecastData.appendChild(forecastIcon);
 
@@ -83,35 +104,6 @@ async function displayForecast() {
     dayForecast.appendChild(dayForecastDataContainer);
     display4Forecast.appendChild(dayForecast);
   });
-}
-
-function displayBackground(id) {
-  switch (true) {
-    case (id < 300):
-      return "url('./assets/Thunderstorm.jpg')";
-      break;
-    case (id < 400):
-      return "url('./assets/Drizzle.jpg')";
-      break;
-    case (id >= 500 && id < 600):
-      return "url('./assets/Rain.jpg')";
-      break;
-    case (id < 600):
-      return "url('./assets/Snow.jpg')";
-      break;
-    case (id < 700):
-      return "url('./assets/Atmosphere.jpg')";
-      break;
-    case (id === 800):
-      return "url('./assets/Clear.jpg')";
-      break;
-    case (id > 800 && id < 900):
-      return "url('./assets/Clouds.jpg')";
-      break;
-    default:
-      return "url('./assets/Clear.jpg')";
-      break;
-  }
 }
 
 displayTodayWeather();

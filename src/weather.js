@@ -1,11 +1,8 @@
-import { APIRequest } from './api_request';
-
-
 export class Weather {
-  constructor() {
+  constructor(api) {
     this.datesAndTimes = [];
     this.timeStamps = ['00:00:00', '06:00:00', '09:00:00', '12:00:00', '18:00:00', '21:00:00'];
-    this.apiRequest = new APIRequest();
+    this.apiRequest = api;
   }
 
   getDatesAndTimes() {
@@ -33,13 +30,13 @@ export class Weather {
   }
 
   formatTemperature(temperature) {
-    let roundedTemp = Math.round(temperature)
+    let roundedTemp = Math.round(temperature);
 
     if (Object.is(roundedTemp, -0)) {
       roundedTemp = 0;
     }
-    temperature = `${roundedTemp}\xB0C`;
-    return temperature;
+    roundedTemp = `${roundedTemp}\xB0C`;
+    return roundedTemp;
   }
 
   async getOneDayWeather() {
@@ -71,7 +68,6 @@ export class Weather {
     }
   }
 
-
   removeDuplicates(array, key) {
     const unique = array
       .map(e => e[key])
@@ -79,7 +75,6 @@ export class Weather {
       .filter(e => array[e]).map(e => array[e]);
     return unique;
   }
-
 
   async fourDayForecast() {
     const timeStamps = this.getDatesAndTimes();
@@ -93,12 +88,9 @@ export class Weather {
         if (date.dt_txt === timestamp) {
           const dateTime = date.dt_txt.split(' ');
           const dateFormatted = dateTime[0].split('-');
-          let day = '';
-
-          day = this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay());
 
           forecastObject.push({
-            day: day,
+            day: this.convertDayToDate(new Date(dateFormatted[0], dateFormatted[1] - 1, dateFormatted[2]).getDay()),
             date: `${dateFormatted[2]}/${dateFormatted[1]}/${dateFormatted[0]}`,
             dt: dateTime[0],
             data: [],
@@ -112,13 +104,11 @@ export class Weather {
       forecastObject.forEach((object) => {
         const dateTime = item.dt_txt.split(' ');
         const timeFormatted = dateTime[1].split(':');
-        let temp = this.formatTemperature(item.main.temp);
 
         if (dateTime[0] === object.dt && this.timeStamps.includes(dateTime[1])) {
-
           object.data.push({
             time: `${timeFormatted[0]}:${timeFormatted[1]}`,
-            temp: temp,
+            temp: this.formatTemperature(item.main.temp),
             description: item.weather[0].description,
             icon: item.weather[0].icon,
           });
