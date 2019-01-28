@@ -1,6 +1,8 @@
 import { Weather } from './weather';
+import { APIRequest } from './api_request';
 
-const weather = new Weather();
+const api = new APIRequest();
+const weather = new Weather(api);
 
 function displayBackground(id) {
   switch (id) {

@@ -1,10 +1,8 @@
-import { APIRequest } from './api_request';
-
 export class Weather {
-  constructor() {
+  constructor(api) {
     this.datesAndTimes = [];
     this.timeStamps = ['00:00:00', '06:00:00', '09:00:00', '12:00:00', '18:00:00', '21:00:00'];
-    this.apiRequest = new APIRequest();
+    this.apiRequest = api;
   }
 
   getDatesAndTimes() {
